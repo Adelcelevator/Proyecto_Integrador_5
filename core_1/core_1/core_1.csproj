@@ -90,6 +90,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\capa_datos\cd_conexion.cs" />
+    <Compile Include="Models\capa_datos\cd_usuario.cs" />
     <Compile Include="Models\objetos\ob_usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
