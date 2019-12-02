@@ -12,7 +12,6 @@ namespace core_1.Models.objetos
         public int tus_id { get; set; }
         public string usu_usu { get; set; }
         public string usu_pass { get; set; }
-        public string datop { get; set; }
         public ob_usuario()
         {
         }
