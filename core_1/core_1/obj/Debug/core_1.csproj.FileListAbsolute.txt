@@ -62,3 +62,7 @@ C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\obj\Debug
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\obj\Debug\core_1.csproj.CopyComplete
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\obj\Debug\core_1.dll
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\obj\Debug\core_1.pdb
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\bin\capa_datos.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\bin\capa_negocio.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\bin\capa_datos.pdb
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\core_1\bin\capa_negocio.pdb

@@ -1,10 +1,10 @@
-﻿using core_1.Models.objetos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.SqlClient;
+using core_1.Models.objetos;
 
 namespace core_1.Models.capa_datos
 {
@@ -66,7 +66,18 @@ namespace core_1.Models.capa_datos
             return obusu;
         }
 
-        public void eliminar_usuario()
+        public void eliminar_usuario(int id)
+        {
+
+        }
+
+        public void actualizar_usuario(int id, int tus_id, string usu_usu, string usu_pass)
+        {
+
+
+        }
+
+        public void nuevo_usuario(int id,int clid,int tusid,string usu,string contra)
         {
 
         }

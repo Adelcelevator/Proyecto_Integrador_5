@@ -89,9 +89,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\capa_datos\cd_conexion.cs" />
-    <Compile Include="Models\capa_datos\cd_usuario.cs" />
-    <Compile Include="Models\objetos\ob_usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +102,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\capa_datos\capa_datos.csproj">
+      <Project>{A6CAC840-CE15-4D77-B512-1FB5A841130A}</Project>
+      <Name>capa_datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\capa_negocio\capa_negocio.csproj">
+      <Project>{dc70eb8b-5253-4bdc-9a38-9bfdb1ffc845}</Project>
+      <Name>capa_negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
