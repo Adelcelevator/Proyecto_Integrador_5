@@ -1,0 +1,9 @@
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\bin\Release\capa_negocio.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\bin\Release\capa_negocio.pdb
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\bin\Release\capa_datos.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\bin\Release\capa_datos.pdb
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Release\capa_negocio.csprojAssemblyReference.cache
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Release\capa_negocio.csproj.CoreCompileInputs.cache
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Release\capa_negocio.csproj.CopyComplete
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Release\capa_negocio.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Release\capa_negocio.pdb

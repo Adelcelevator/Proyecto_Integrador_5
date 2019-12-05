@@ -32,22 +32,38 @@ namespace capa_negocio
         }
         public ob_usuario buscarxusu(string usa)
         {
+
             ob_usuario us = new ob_usuario();
-            return us;
+            cd_usuario cda = new cd_usuario();
+            us = cda.buscarxusu(usa);
+            if (us.usu_usu != null)
+            {
+                return us;
+            }
+            else
+            {
+                ob_usuario sinna = new ob_usuario();
+                sinna.cli_id = 0;
+                sinna.usu_id = 0;
+                sinna.tus_id = 0;
+                sinna.usu_pass = null;
+                sinna.usu_pass = null;
+                return sinna;
+            }
         }
-        public void nuevo_usuario(int id,int clid,int tus,string usu,string contra)
+        public void nuevo_usuario(int clid, string usu, string contra)
         {
-
+            cdusu.nuevo_usuario(clid,usu,contra);
         }
 
-        public void actualizar_usuario(int id,int tus_id,string usu_usu,string usu_pass)
+        public void actualizar_usuario(int id,int cli_id, int tus_id, string usu_usu, string usu_pass)
         {
-
+            cdusu.actualizar_usuario(id,cli_id,tus_id,usu_usu,usu_pass);
         }
 
         public void eliminar_usuario(int id)
         {
-
+            cdusu.eliminar_usuario(id);
         }
 
     }
