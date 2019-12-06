@@ -14,17 +14,12 @@ namespace core_1.Controllers
     {
         private cn_usuario cn_usu = new cn_usuario();
         private ob_usuario obs = new ob_usuario();
-        [HttpGet]
         public IEnumerable<ob_usuario> GetAllUsuarios()
         {
             List<ob_usuario> lisus = cn_usu.Todos_usuarios();
-            ob_usuario[] obusu1 = new ob_usuario[] {
-
-            };
-            return lisus;
+            return lisus.ToArray();
         }
         // metodo de ingreso
-        [HttpGet, Route("usu_id")]
         public IHttpActionResult GetUsuario(string usu_id)
         {
             try
