@@ -14,3 +14,27 @@ footer {
     bottom: 0px;
     width: 100%;
 }
+
+.cuerpo{
+    background-image: url(../images/fondo.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: black;
+}
+
+.tablas{
+    margin-top: 20mm !important;
+    background: rgba(255,255,255,0.7) !important;
+    position: absolute !important;
+    padding: 13mm !important;
+    margin-left: 20vw !important;
+}
+
+
+.imagen{
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+}

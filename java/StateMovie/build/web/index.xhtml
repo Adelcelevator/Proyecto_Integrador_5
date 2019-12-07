@@ -1,20 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>StateMovie</title>
         <link  rel="icon"   href="resources/images/favicon.ico"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
     </h:head>
-    <h:body>
+    <h:body class="cuerpo">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark animated fadeIn">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand">
-                <img src="resources/images/iconoB.png" width="30" height="30" class="d-inline-block align-top" alt="icono"/>&nbsp;State Movie
+                <img src="resources/images/iconoB.png" width="30" height="30" class="d-inline-block align-top img-fluid" alt="icono"/>&nbsp;State Movie
             </a>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -37,8 +39,50 @@
         </nav>
 
 
-        
-        
+        <center>
+            <div class="tablas">
+                <div class="img-fluid">
+                    <h:graphicImage value="resources/images/statemovie.png" alt="logo" height="200vh" width="500vw" />
+                </div>
+                <center><h:outputLabel class="titulos"  value="¡Bienvenido!"/></center>
+                <br/>
+                <br/>
+                <br/>
+                <h:form>
+                    <center>
+                        <table  class="textog">
+                            <tr>
+
+                                <td><p:inputText size="32" id="txt_usu" value=""/>
+                                    <p:watermark for="txt_usu" value="Nombre de Usuario"/></td>
+                                <tr> 
+                                    <td><br></br></td>
+                                    <td><br></br></td>
+
+                                </tr>
+                                <tr> 
+                                    <td><br></br></td>
+                                    <td><br></br></td>
+
+                                </tr>
+
+                                <td><p:watermark for="txt_contra" value="Contraseña"/>
+
+
+                                    <p:password size="32" id="txt_contra" value=""/></td>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <h:commandButton class="boton" value="Iniciar Sesión"/>
+                        <p:separator></p:separator>
+                        <h:button class="botons" value="Crear Cuenta" outcome="registropa.xhtml"/>
+                        <br/>
+                        <br/>
+                        <h:outputLabel value=""/>
+                    </center>
+                </h:form>
+            </div>
+        </center>    
 
 
 
