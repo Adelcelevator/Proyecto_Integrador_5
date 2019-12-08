@@ -17,7 +17,7 @@ namespace core_1.Controllers
         public IEnumerable<ob_usuario> GetAllUsuarios()
         {
             List<ob_usuario> lisus = cn_usu.Todos_usuarios();
-            return lisus.ToArray();
+            return lisus;
         }
         // metodo de ingreso
         public IHttpActionResult GetUsuario(string usu_id)
