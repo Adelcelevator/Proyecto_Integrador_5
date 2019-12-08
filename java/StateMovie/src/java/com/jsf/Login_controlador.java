@@ -20,19 +20,25 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class Login_controlador implements Serializable{
-    public usuario mostarlista(){
+    public List<usuario> mostarlista(){
+        try{
         List<usuario> lista=new ArrayList<>();
         lista.clear();
         try {
             FacesContext conte=FacesContext.getCurrentInstance();
             lista = (List<usuario>) conte.getExternalContext().getSessionMap().get("lista");
             System.out.println("===================================================");
-            System.out.println("Lista: "+ lista.toString());
+            System.out.println("Lista: "+ lista.size());
+            System.out.println("Lista: "+ lista.get(0).getUsu_usu());
             System.out.println("===================================================");
-            return (usuario) lista;
+            return lista;
         } catch (Exception e) {
             System.out.println("ERROR AL TRAER LA LISTA: "+e);
         }
-        return (usuario) lista;
+        return lista;
+        }catch(Exception e){
+            System.out.println("ERROR ASA "+e);
+        }
+        return null;
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.json.JSONException;
 
 /**
  *
@@ -36,7 +37,7 @@ public class Index_controlador implements Serializable {
         System.out.println("=================================================================");
         System.out.println("=================================================================");
         try {
-            final String urlweb = "localhost:51289/api/Usuario";
+            final String urlweb = "http://localhost:51289/api/Usuario";
             URL url = new URL(urlweb);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -50,7 +51,9 @@ public class Index_controlador implements Serializable {
                 System.out.println("OUTPUT=++++++++++++++++++++++");
                 while ((output = br.readLine()) != null) {
                     System.out.println(output);
-                    JSONObject json=new JSONObject(output);
+                    System.out.println("tama: "+output.length());
+                    //JSONArray json= new JSONArray(output);
+                    JSONObject json=new JSONObject((output.replace("]", "")).replace("[", ""));
                     usuario us=new usuario();
                     us.setUsu_id(json.getInt("usu_id"));
                     us.setCli_id(json.getInt("cli_id"));
@@ -76,7 +79,7 @@ public class Index_controlador implements Serializable {
                  */
             }
 
-        } catch (Exception e) {
+        } catch (IOException | JSONException e) {
             System.out.println("=================================================================");
             System.out.println("ERROR: " + e);
         }
