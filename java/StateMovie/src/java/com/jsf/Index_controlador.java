@@ -18,6 +18,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.json.JSONArray;
 import org.json.JSONException;
 
 /**
@@ -44,23 +45,30 @@ public class Index_controlador implements Serializable {
             conn.setRequestProperty("ACCEPT", "application/json");
             System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             if (conn.getResponseCode() == 200) {
-                List<usuario> listus=new ArrayList<>();
+                List<usuario> listus = new ArrayList<>();
                 listus.clear();
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String output;
                 System.out.println("OUTPUT=++++++++++++++++++++++");
                 while ((output = br.readLine()) != null) {
                     System.out.println(output);
-                    System.out.println("tama: "+output.length());
-                    //JSONArray json= new JSONArray(output);
-                    JSONObject json=new JSONObject((output.replace("]", "")).replace("[", ""));
-                    usuario us=new usuario();
-                    us.setUsu_id(json.getInt("usu_id"));
-                    us.setCli_id(json.getInt("cli_id"));
-                    us.setTus_id(json.getInt("tus_id"));
-                    us.setUsu_usu(json.getString("usu_usu"));
-                    us.setUsu_pass(json.getString("usu_pass"));
-                    listus.add(us);
+                    System.out.println("tama: " + output.length());
+                    JSONArray json = new JSONArray(output);
+                    System.out.println("TAMA: " + json.length());
+                    for (int i = 0; i<json.length(); i++) {
+                        usuario usua = new usuario();
+                        JSONObject jsn = json.getJSONObject(i);
+                        usua.setUsu_id(jsn.getInt("usu_id"));
+                        usua.setCli_id(jsn.getInt("cli_id"));
+                        usua.setTus_id(jsn.getInt("tus_id"));
+                        usua.setUsu_usu(jsn.getString("usu_usu"));
+                        usua.setUsu_pass(jsn.getString("usu_pass"));
+                        listus.add(usua);
+                        System.out.println("Tama lista: "+listus.size());
+                    }
+                    //usua.setUsu_id();
+                    /*JSONObject json=new JSONObject((output.replace("]", "")).replace("[", ""));
+                     */
                 }
                 conn.disconnect();
                 FacesContext con = FacesContext.getCurrentInstance();

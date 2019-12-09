@@ -30,6 +30,8 @@ public class Login_controlador implements Serializable{
             System.out.println("===================================================");
             System.out.println("Lista: "+ lista.size());
             System.out.println("Lista: "+ lista.get(0).getUsu_usu());
+            System.out.println("Lista: "+ lista.get(1).getUsu_usu());
+            System.out.println("Lista: "+ lista.get(2).getUsu_usu());
             System.out.println("===================================================");
             return lista;
         } catch (Exception e) {
