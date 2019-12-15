@@ -7,3 +7,12 @@ C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.csproj.CopyComplete
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.dll
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.pdb
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\bin\Debug\capa_negocio.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\bin\Debug\capa_negocio.pdb
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\bin\Debug\capa_datos.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\bin\Debug\capa_datos.pdb
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.csprojAssemblyReference.cache
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.csproj.CoreCompileInputs.cache
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.csproj.CopyComplete
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.dll
+C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_negocio\obj\Debug\capa_negocio.pdb

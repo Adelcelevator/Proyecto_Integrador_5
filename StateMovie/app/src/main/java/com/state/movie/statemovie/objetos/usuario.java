@@ -13,7 +13,10 @@ public class usuario extends AsyncTask<usuario, Void, usuario> {
 
     @Override
     protected usuario doInBackground(usuario... usuarios) {
+
+
         return null;
+
     }
 
     public int getUsu_id() {
