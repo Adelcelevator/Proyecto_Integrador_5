@@ -17,7 +17,7 @@ import javax.faces.context.FacesContext;
  *
  * @author Panchito
  */
-@ManagedBean
+@ManagedBean (name="login")
 @SessionScoped
 public class Login_controlador implements Serializable{
     public List<usuario> mostarlista(){

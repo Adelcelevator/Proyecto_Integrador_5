@@ -15,7 +15,7 @@ public class CL_Conexiones extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... voids) {
         String json = "";
         try {
-            final String url = "http://localhost:51289/api/Usuario";
+            final String url = "http://192.168.43.213:51289/api/Usuario";
             URL wurl = new URL(url);
             HttpURLConnection con = (HttpURLConnection) wurl.openConnection();
             con.setRequestMethod("GET");

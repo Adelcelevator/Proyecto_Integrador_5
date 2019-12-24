@@ -8,7 +8,6 @@ package com.jsf;
 import com.objetos.usuario;
 import java.io.BufferedReader;
 import java.io.IOException;
-import org.json.JSONObject;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
@@ -20,14 +19,44 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
  * @author Panchito
  */
-@ManagedBean(name = "index")
+@ManagedBean (name="index")
 @SessionScoped
 public class Index_controlador implements Serializable {
+
+    private String usuario, contra, error;
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContra() {
+        return contra;
+    }
+
+    public void setContra(String contra) {
+        this.contra = contra;
+    }
+
+    public Index_controlador() {
+    }
 
     public void consumo() {
 
@@ -55,7 +84,7 @@ public class Index_controlador implements Serializable {
                     System.out.println("tama: " + output.length());
                     JSONArray json = new JSONArray(output);
                     System.out.println("TAMA: " + json.length());
-                    for (int i = 0; i<json.length(); i++) {
+                    for (int i = 0; i < json.length(); i++) {
                         usuario usua = new usuario();
                         JSONObject jsn = json.getJSONObject(i);
                         usua.setUsu_id(jsn.getInt("usu_id"));
@@ -64,13 +93,14 @@ public class Index_controlador implements Serializable {
                         usua.setUsu_usu(jsn.getString("usu_usu"));
                         usua.setUsu_pass(jsn.getString("usu_pass"));
                         listus.add(usua);
-                        System.out.println("Tama lista: "+listus.size());
+                        System.out.println("Tama lista: " + listus.size());
                     }
                     //usua.setUsu_id();
                     /*JSONObject json=new JSONObject((output.replace("]", "")).replace("[", ""));
                      */
                 }
                 conn.disconnect();
+
                 FacesContext con = FacesContext.getCurrentInstance();
                 con.getExternalContext().redirect("login.xhtml");
                 con.getExternalContext().getSessionMap().put("lista", listus);
@@ -90,6 +120,35 @@ public class Index_controlador implements Serializable {
         } catch (IOException | JSONException e) {
             System.out.println("=================================================================");
             System.out.println("ERROR: " + e);
+        }
+    }
+
+    public void entrar() {
+        String json;
+        try {
+            String urlweb = "http://localhost:51289/api/Usuario?usu_id=" + usuario;
+            URL url = new URL(urlweb);
+            HttpURLConnection conec = (HttpURLConnection) url.openConnection();
+            conec.setRequestMethod("GET");
+            conec.setRequestProperty("ACCEPT", "application/json");
+            if (conec.getResponseCode() == 200) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(conec.getInputStream()));
+                json = br.readLine();
+                JSONObject obj = new JSONObject((json.replace("[", "")).replace("]", ""));
+                conec.disconnect();
+                if (obj.getInt("cli_id") == 0) {
+                    error = "No Existe el usuario";
+                } else {
+                    if(obj.getString("usu_pass").equals(contra)){
+                        FacesContext conte= FacesContext.getCurrentInstance();
+                        conte.getExternalContext().redirect("login.xhtml");
+                    }else{
+                        error="Contraseña Incorrecta";
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR AL INGRESAR: " + e);
         }
     }
 }

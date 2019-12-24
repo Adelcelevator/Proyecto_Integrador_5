@@ -5,8 +5,6 @@
  */
 package com.objetos;
 
-import jdk.nashorn.api.scripting.JSObject;
-
 /**
  *
  * @author Panchito
