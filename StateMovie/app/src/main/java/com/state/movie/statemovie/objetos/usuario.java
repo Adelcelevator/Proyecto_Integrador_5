@@ -1,21 +1,11 @@
 package com.state.movie.statemovie.objetos;
 
-import android.os.AsyncTask;
-
-public class usuario extends AsyncTask<usuario, Void, usuario> {
+public class usuario{
 
     private int usu_id, cli_id, tus_id;
     private String usu_usu, usu_pass;
 
     public usuario() {
-
-    }
-
-    @Override
-    protected usuario doInBackground(usuario... usuarios) {
-
-
-        return null;
 
     }
 
