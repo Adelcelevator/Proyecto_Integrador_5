@@ -15,7 +15,7 @@ namespace capa_negocio
         private List<ob_usuario> listausu = new List<ob_usuario>();
 
         public List<ob_usuario> Todos_usuarios()
-        {
+        {   
             listausu.Clear();
             DataTable dt = cdusu.mostrar_usuarios();
             foreach (DataRow dr in dt.Rows)

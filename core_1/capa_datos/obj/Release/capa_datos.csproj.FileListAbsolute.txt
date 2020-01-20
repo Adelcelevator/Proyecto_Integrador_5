@@ -3,9 +3,3 @@ C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_datos\bin\R
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_datos\obj\Release\capa_datos.csproj.CoreCompileInputs.cache
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_datos\obj\Release\capa_datos.dll
 C:\Users\Panchito\Desktop\afs\visual\Proyecto Integrador\core_1\capa_datos\obj\Release\capa_datos.pdb
-C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_datos\bin\Release\capa_datos.dll
-C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_datos\bin\Release\capa_datos.pdb
-C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_datos\obj\Release\capa_datos.csprojAssemblyReference.cache
-C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_datos\obj\Release\capa_datos.csproj.CoreCompileInputs.cache
-C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_datos\obj\Release\capa_datos.dll
-C:\Users\Panchito\Desktop\afs\visual\Proyecto_Integrador\core_1\capa_datos\obj\Release\capa_datos.pdb

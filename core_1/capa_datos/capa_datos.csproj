@@ -30,14 +30,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>bin\x64\Release\</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,8 +41,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cd_cine.cs" />
+    <Compile Include="cd_cliente.cs" />
     <Compile Include="cd_conexion.cs" />
+    <Compile Include="cd_genero.cs" />
+    <Compile Include="cd_gpeli.cs" />
+    <Compile Include="cd_horario.cs" />
+    <Compile Include="cd_hpeli.cs" />
+    <Compile Include="cd_pelicula.cs" />
+    <Compile Include="cd_sala.cs" />
+    <Compile Include="cd_ssucursal.cs" />
+    <Compile Include="cd_starifa.cs" />
+    <Compile Include="cd_sucursal.cs" />
+    <Compile Include="cd_tarifa.cs" />
+    <Compile Include="cd_tiket.cs" />
+    <Compile Include="cd_tipo_usuario.cs" />
+    <Compile Include="cd_tpago.cs" />
     <Compile Include="cd_usuario.cs" />
+    <Compile Include="objetos\ob_cine.cs" />
+    <Compile Include="objetos\ob_cliente.cs" />
+    <Compile Include="objetos\ob_genero.cs" />
+    <Compile Include="objetos\ob_gpeli.cs" />
+    <Compile Include="objetos\ob_horario.cs" />
+    <Compile Include="objetos\ob_hpeli.cs" />
+    <Compile Include="objetos\ob_pelicula.cs" />
+    <Compile Include="objetos\ob_sala.cs" />
+    <Compile Include="objetos\ob_ssucursal.cs" />
+    <Compile Include="objetos\ob_starifa.cs" />
+    <Compile Include="objetos\ob_sucursal.cs" />
+    <Compile Include="objetos\ob_tarifa.cs" />
+    <Compile Include="objetos\ob_tiket.cs" />
+    <Compile Include="objetos\ob_tipo.cs" />
+    <Compile Include="objetos\ob_tpago.cs" />
     <Compile Include="objetos\ob_usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

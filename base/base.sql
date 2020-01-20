@@ -180,6 +180,7 @@ alter table tbl_gene_peli add constraint fk_gene_peli_gene foreign key(gen_id)
 alter table tbl_gene_peli add constraint fk_gene_peli_peli foreign key(pel_id)
 	references tbl_pelicula(pel_id);
 
+alter tbl_pelicula add 
 	/*drop database statemovie*/
 
 create proc mostrar_usuarios
@@ -228,6 +229,79 @@ as
 update tbl_usuario set usu_est='i' where usu_id=@usu_id
 go;
 
+/*procesos de tipo usuario*/
+
+create proc mostrar_tipos_usuarios
+as
+begin
+select tip.tus_id as 'ID TIPO',tip.tus_desc as 'Descripcion' from tbl_tipo_usuario tip where tip.tus_id=tip.tus_id 
+end
+go;
+
+create proc crear_tipo_usuario
+@tusid int,
+@desc varchar(50)
+as
+begin
+insert into tbl_tipo_usuario values(@desc)
+end
+go;
+
+create proc mostrar_pelicula
+as
+begin
+select * from tbl_pelicula peli where peli.pel_id=peli.pel_id
+end
+go
+
+alter table tbl_pelicula add pel_linkv varchar(100) null;
+alter table tbl_pelicula add pel_linkba varchar(1000) null;
+alter table tbl_pelicula alter column pel_est varchar(100) null;
+
+create proc mostrar_pelicula_x_pelicula
+@pel_nom varchar(50)
+as
+begin
+select * from tbl_pelicula peli where peli.pel_id=peli.pel_id and pel_nom like @pel_nom
+end
+go
+
+create proc crear_editar_pelicula
+@pel_id int,
+            @pel_nom varchar(50),
+            @pel_pro varchar(50),
+            @pel_dire varchar(50),
+            @pel_cla varchar(50),
+            @estado varchar(50),
+            @pel_linkv varchar(100),
+            @pel_linkba varchar(1000)
+			as 
+			begin 
+			if(@pel_id =0)
+		begin
+		insert into tbl_pelicula values (@pel_nom,@pel_pro,@pel_dire,@pel_cla,@estado,@pel_linkv,@pel_linkba)
+		end
+	else
+	begin
+	update tbl_pelicula set pel_nom=@pel_nom,pel_pro=@pel_pro,pel_dire=@pel_dire,pel_cla=@pel_cla,pel_est=@estado,pel_linkv=@pel_linkv,pel_linkba=@pel_linkba where pel_id=@pel_id
+	end
+	end
+	go
+
+drop proc crear_tipo_usuario;
+
+select * from tbl_tipo_usuario;
+
+delete tbl_pelicula
+
+select *from tbl_pelicula;
+
 select * from tbl_usuario;
+
 drop proc mostrar_usuario_x_usuario;
+
 execute mostrar_usuarios;
+
+
+DBCC CHECKIDENT (tbl_pelicula, RESEED, 0);
+

@@ -12,7 +12,7 @@ namespace core_1.Models.capa_datos
     {
         cd_conexion conexion = new cd_conexion();
         public ob_usuario obusu = new ob_usuario();
-        SqlCommand comando = new SqlCommand();
+        SqlCommand comando = new SqlCommand();  
         SqlDataReader leer;
 
         public DataTable mostrar_usuarios()
