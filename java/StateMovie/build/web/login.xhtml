@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -21,27 +22,28 @@ and open the template in the editor.
             </div>
             <div class="formulario ">
                 <h2> Iniciar Sesion </h2>
-                <form action="#">
-                    <h:inputText />
-                    <h:inputSecret />
-                    <h:commandButton />
-                </form>
+                <h:form>
+                    <p:inputText id="txt_usu" placeholder="Usuario" value="#{index.usuario}" />
+                    <p:password id="txt_contra" placeholder="Contraseña" value="#{index.contra}" />
+                    <h:commandButton value="Iniciar Sesion" action="#{index.entrar()}"/>
+                </h:form>
             </div>
             <div class="formulario ">
                 <h2> Registro </h2>
                 <h:form>
-                    <h:inputText  />
+                    <h:inputText />
                     <h:inputSecret />
                     <h:inputText />
                     <h:inputText />
-                    <h:commandButton />
+                    <h:commandButton value="Registrarme" />
                 </h:form>
             </div>
             <div class="reset-password">
                 <h:link value="Olvido su contraseña?" />
             </div>
+            <h:outputLabel id="lbl_err" value="#{index.error}"/>
         </div>
-        <script src="resources/js/jquery-3.1.1.min.js"/>    
+        <!--<script src="resources/js/jquery-3.1.1.min.js"/>-->    
         <script src="resources/js/main.js"/>
     </h:body>
 </html>

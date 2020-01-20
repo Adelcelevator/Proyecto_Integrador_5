@@ -20,27 +20,7 @@ namespace core_1.Controllers
             return liscli;
         }
         // metodo de ingreso
-        /*
-        public IHttpActionResult GetCliente(string cli_id)
-        {
-            try
-            {
-                obs = cn_clie.buscar_cliente(cli_id);
-                ob_cliente[] lisclie2 = new ob_cliente[] {
-
-                    new ob_cliente{cli_id=obs.cli_id,cli_ruc=obs.cli_ruc,cli_nom=obs.cli_nom,cli_ape=obs.cli_ape,cli_dire=obs.cli_dire,cli_tel=obs.cli_tel,cli_corr=obs.cli_corr,cli_fnaci=obs.cli_fnaci,cli_est=obs.cli_est}
-
-                };
-                return Ok(lisclie2);
-            }
-            catch (Exception)
-            {
-                HttpResponseMessage mensaje = new HttpResponseMessage();
-                return Ok(mensaje);
-            }
-             
-        }
-        */
+        
 
         //insertar
         [HttpPost]

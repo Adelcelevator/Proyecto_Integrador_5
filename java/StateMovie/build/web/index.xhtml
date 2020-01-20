@@ -1,143 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      <h:head>
         <link  rel="icon"   href="resources/images/favicon.ico"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="resources/css/estilos.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/estilosgene.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
         <title> LOGIN </title>
     </h:head>
     <h:body class="cuerpo">
-        <div class="contenedor-form">
-            <div class="toggle">
-                <span> Registrarse </span>
-            </div>
-            <div class="formulario ">
-                <h2> Iniciar Sesion </h2>
-                <h:form>
-                    <p:inputText id="txt_usu" value="#{index.usuario}" />
-                    <p:password id="txt_contra" value="#{index.contra}" />
-                    <h:commandButton value="Iniciar Sesion" action="#{index.entrar()}"/>
-                </h:form>
-            </div>
-            <div class="formulario ">
-                <h2> Registro </h2>
-                <h:form>
-                    <h:inputText />
-                    <h:inputSecret />
-                    <h:inputText />
-                    <h:inputText />
-                    <h:commandButton value="Registrarme" />
-                </h:form>
-            </div>
-            <div class="reset-password">
-                <h:link value="Olvido su contraseña?" />
-            </div>
-            <h:outputLabel id="lbl_err" value="#{index.error}"/>
-        </div>
-        <script src="resources/js/jquery-3.1.1.min.js"/>    
-        <script src="resources/js/main.js"/>
-    </h:body>
-</html>
-<!--<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>StateMovie</title>
-        <link  rel="icon"   href="resources/images/favicon.ico"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
-    </h:head>
-    <h:body class="cuerpo">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark animated fadeIn">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="faces/index.xhtml">StateMovie</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand">
-                <img src="resources/images/iconoB.png" width="30" height="30" class="d-inline-block align-top img-fluid" alt="icono"/>&nbsp;State Movie
-            </a>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item" routerLinkActive="active">
-                        <a class="nav-link" routerLinkActive="active" >Home <span class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="faces/index.xhtml">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active">Peliculas</a>
+                        <a class="nav-link" href="faces/peliculas.xhtml">Todas las Peliculas</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active">About</a>
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <h:form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" placeholder="Buscar una Pelicula" />
-                    <h:commandButton class="btn btn-outline-success my-2 my-sm-0" value="Buscar" action=""/>
-                </h:form>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
         </nav>
-
-
-        <center>
-            <div class="tablas">
-                <div class="img-fluid">
-                    <h:graphicImage value="resources/images/statemovie.png" alt="logo" height="200vh" width="500vw" />
-                </div>
-                <center><h:outputLabel class="titulos"  value="¡Bienvenido!"/></center>
-                <br/>
-                <br/>
-                <br/>
-                <h:form>
-                    <center>
-                        <table  class="textog">
-                            <tr>
-
-                                <td><p:inputText size="32" id="txt_usu" value=""/>
-                                    <p:watermark for="txt_usu" value="Nombre de Usuario"/></td>
-                                <tr> 
-                                    <td><br></br></td>
-                                    <td><br></br></td>
-
-                                </tr>
-                                <tr> 
-                                    <td><br></br></td>
-                                    <td><br></br></td>
-
-                                </tr>
-
-                                <td><p:watermark for="txt_contra" value="Contraseña"/>
-
-
-                                    <p:password size="32" id="txt_contra" value=""/></td>
-                            </tr>
-                        </table>
-                        <br></br>
-                        <h:commandButton class="boton" value="Iniciar Sesión"/>
-                        <p:separator></p:separator>
-                        <h:button class="botons" value="Crear Cuenta" outcome="registropa.xhtml"/>
-                        <br/>
-                        <br/>
-                        <h:outputLabel value=""/>
-                    </center>
-                </h:form>
-            </div>
-        </center>    
-
-
-
-
-
-
-
-        <footer class="footer bg-dark text-center">
-            <div class="container">
-                &copy; 2019 StateMovie
-            </div>
-        </footer>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h:form>
+            <center><h:outputLabel class="mitxt" value="Ingresa un Nombre: "/>&nbsp;<h:inputText value="#{index.nomp}"/>&nbsp;&nbsp;&nbsp;<h:commandButton action="#{index.buscar()}" value="Buscar"/></center>
+        </h:form>
+        
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"/>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"/>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"/>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"/>
     </h:body>
-</html>-->
+</html>

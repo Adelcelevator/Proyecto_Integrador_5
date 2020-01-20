@@ -22,8 +22,9 @@ namespace capa_negocio
             foreach (DataRow dr in dt.Rows)
             {
                 ob_cine nombre = new ob_cine();
-                nombre.cin_id = Convert.ToInt32(dr["ID Cine"].ToString());
-                nombre.cin_nom = dr["Usuario"].ToString();
+                nombre.cin_id = Convert.ToInt32(dr["cin_id"].ToString());
+                nombre.cin_nom = dr["cin_nom"].ToString();
+                nombre.cin_est = dr["cin_est"].ToString();
                 listausu.Add(nombre);
             }
             return listausu;
@@ -55,9 +56,9 @@ namespace capa_negocio
             cdcin.nuevo_cine(0, cin_nom);
         }
 
-        public void actualizar_cine(int cin_id, string cin_nom)
+        public void actualizar_cine(int cin_id, string cin_nom,string cin_est)
         {
-            cdcin.actualizar_cine(cin_id, cin_nom);
+            cdcin.actualizar_cine(cin_id, cin_nom,cin_est);
         }
 
         public void eliminar_cin(int id)

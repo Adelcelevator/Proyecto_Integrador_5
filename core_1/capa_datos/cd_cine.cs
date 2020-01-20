@@ -80,21 +80,22 @@ namespace capa_datos
         public void eliminar_cine(int id)
         {
             comando.Connection = conexion.abrir_conexion();
-            comando.CommandText = "Eliminar_Cine";
+            comando.CommandText = "eliminar_Cine";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("cin_id", id);
+            comando.Parameters.AddWithValue("@cin_id", id);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.cerrar_conexion();
         }
 
-        public void actualizar_cine(int cin_id, string cin_nom)
+        public void actualizar_cine(int cin_id, string cin_nom,string cin_est)
         {
             comando.Connection = conexion.abrir_conexion();
-            comando.CommandText = "crear_editar_cliente";
+            comando.CommandText = "crear_editar_cine";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@cin_id", cin_id);
             comando.Parameters.AddWithValue("@cin_nom", cin_nom);
+            comando.Parameters.AddWithValue("@cin_est", cin_est);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.cerrar_conexion();
@@ -103,11 +104,11 @@ namespace capa_datos
         public void nuevo_cine(int cin_id, string cin_nom)
         {
             comando.Connection = conexion.abrir_conexion();
-            comando.CommandText = "crear_editar_cliente";
+            comando.CommandText = "crear_editar_cine";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("cin_id", 0);
             comando.Parameters.AddWithValue("@cin_nom", cin_nom);
-            comando.Parameters.AddWithValue("@estado", "a");
+            comando.Parameters.AddWithValue("@cin_est", "Activo");
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.cerrar_conexion();

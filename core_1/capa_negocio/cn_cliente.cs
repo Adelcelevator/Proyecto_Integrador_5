@@ -21,14 +21,15 @@ namespace capa_negocio
             foreach (DataRow dr in dt.Rows)
             {
                 ob_cliente cliente = new ob_cliente();
-                cliente.cli_id = Convert.ToInt32(dr["ID Cliente"].ToString());
-                cliente.cli_ruc = dr["RUC"].ToString();
-                cliente.cli_nom = dr["Nombre"].ToString();
-                cliente.cli_ape = dr["Apellido"].ToString();
-                cliente.cli_dire = dr["Direccion"].ToString();
-                cliente.cli_tel = Convert.ToInt32(dr["Telefono"].ToString());
-                cliente.cli_corr = dr["Correo"].ToString();
-                cliente.cli_fnaci = dr["FNacimiento"].ToString();
+                cliente.cli_id = Convert.ToInt32(dr["cli_id"].ToString());
+                cliente.cli_ruc = dr["cli_ruc"].ToString();
+                cliente.cli_nom = dr["cli_nom"].ToString();
+                cliente.cli_ape = dr["cli_ape"].ToString();
+                cliente.cli_dire = dr["cli_dire"].ToString();
+                cliente.cli_tel = Convert.ToInt32(dr["cli_tel"].ToString());
+                cliente.cli_corr = dr["cli_corr"].ToString();
+                cliente.cli_fnaci = dr["cli_fnaci"].ToString();
+                cliente.cli_est = dr["cli_est"].ToString();
                 listaclie.Add(cliente);
             }
             return listaclie;

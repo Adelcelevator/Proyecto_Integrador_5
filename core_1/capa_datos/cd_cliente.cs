@@ -118,7 +118,7 @@ namespace capa_datos
             comando.Connection = conexion.abrir_conexion();
             comando.CommandText = "crear_editar_cliente";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("cli_id", 0);
+            comando.Parameters.AddWithValue("@cli_id", 0);
             comando.Parameters.AddWithValue("@cli_ruc", cli_ruc);
             comando.Parameters.AddWithValue("@cli_nom", cli_nom);
             comando.Parameters.AddWithValue("@cli_ape", cli_ape);
@@ -126,7 +126,7 @@ namespace capa_datos
             comando.Parameters.AddWithValue("@cli_tel", cli_tel);
             comando.Parameters.AddWithValue("@cli_corr", cli_corr);
             comando.Parameters.AddWithValue("@cli_fnaci", cli_fnaci);
-            comando.Parameters.AddWithValue("@estado", "a"); 
+            comando.Parameters.AddWithValue("@cli_est", "active"); 
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.cerrar_conexion();

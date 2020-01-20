@@ -288,6 +288,96 @@ create proc crear_editar_pelicula
 	end
 	go
 
+	create proc eliminar_pelicula
+@pel_id int
+    as
+	begin 
+	update tbl_pelicula set pel_est='deleted' where pel_id=@pel_id
+	end
+	go
+
+/*Fin procesos Pelicula*/
+
+
+/*Inicio procesos Cine*/
+	create proc mostrar_cine
+	as
+	begin
+	select * from tbl_cine c where c.cin_id=c.cin_id
+	end
+	go
+
+create proc crear_editar_cine
+@cin_id int,
+            @cin_nom varchar(50),
+            @cin_est varchar(50)
+            as 
+			begin 
+			if(@cin_id =0)
+		begin
+		insert into tbl_cine values (@cin_nom,@cin_est)
+		end
+	else
+	begin
+	update tbl_cine set cin_nom=@cin_nom,cin_est=@cin_est  where cin_id=@cin_id
+	end
+	end
+	go
+
+	create proc eliminar_cine
+	@cin_id int
+	as
+	begin
+	update tbl_cine set cin_est='deleted' where cin_id=@cin_id
+	end
+	go
+/*Fin procesos Cine*/
+
+
+/*Inicio procesos Cliente*/
+create proc mostrar_cliente
+as
+begin
+select * from tbl_cliente cli where cli.cli_id=cli.cli_id
+end
+go
+
+create proc crear_editar_cliente
+@cli_id int,
+@cli_ruc varchar(13),
+@cli_nom varchar(50),
+@cli_ape varchar(50),
+@cli_dire varchar(50),
+@cli_tel int,
+@cli_corr varchar(100),
+@cli_fnaci varchar(50),
+@cli_est varchar(50)
+as 
+begin 
+if(@cli_id =0)
+	begin
+	 insert into tbl_cliente values (@cli_ruc,@cli_nom,@cli_ape,@cli_dire,@cli_tel,@cli_corr,@cli_fnaci,@cli_est)
+	end
+	else
+	begin
+	update tbl_cliente set cli_ruc=@cli_ruc,cli_nom=@cli_nom,cli_ape=@cli_ape,cli_dire=@cli_dire,cli_tel=@cli_tel,cli_corr=@cli_corr,cli_fnaci=@cli_fnaci,cli_est=@cli_est  where cli_id=@cli_id
+	end
+	end
+	go
+
+	create proc eliminar_cliente
+	@cli_id int
+	as
+	begin
+	update tbl_cliente set cli_est='deleted' where cli_id=@cli_id
+	end
+	go
+
+/*Fin procesos Cliente*/
+
+
+
+
 drop proc crear_tipo_usuario;
 
 select * from tbl_tipo_usuario;

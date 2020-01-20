@@ -5,11 +5,13 @@
  */
 package com.objetos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Panchito
  */
-public class usuario {
+public class usuario implements Serializable{
     private int usu_id,cli_id,tus_id;
     private String usu_usu,usu_pass;
 
