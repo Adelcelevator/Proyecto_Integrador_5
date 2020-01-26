@@ -22,8 +22,8 @@ namespace capa_negocio
             foreach (DataRow dr in dt.Rows)
             {
                 ob_gpeli gpeli = new ob_gpeli();
-                gpeli.gen_id = Convert.ToInt32(dr["ID Genero"].ToString());
-                gpeli.pel_id = Convert.ToInt32(dr["ID Pelicula"].ToString());
+                gpeli.gen_id = Convert.ToInt32(dr["gen_id"].ToString());
+                gpeli.pel_id = Convert.ToInt32(dr["pel_id"].ToString());
                 listausu.Add(gpeli);
             }
             return listausu;

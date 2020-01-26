@@ -131,6 +131,49 @@ gen_nom varchar(60) null,
 primary key(gen_id)
 );
 
+create table tbl_suc_pel(
+suc_id int,
+/*alter table tbl_suc_pel add sucp_est varchar(50) null;*/
+pel_id int
+);
+
+create table tbl_empleado(
+emp_id int identity(1,1) not null primary key,
+emp_nom varchar(50) null,
+emp_ape varchar(50) null,
+emp_fnac varchar(50) null,
+emp_freg varchar(50) null,
+emp_dire varchar(50) null,
+emp_tele varchar(10) null,
+emp_cel varchar(10) null,
+emp_ci varchar(10) null,
+emp_est varchar(50) null
+);
+
+alter table tbl_emp_cin add constraint fk_emp_cin foreign key (emp_id) references tbl_empleado(emp_id);
+alter table tbl_emp_cin add constraint fk_emp_cin2 foreign key (cin_id) references tbl_cine(cin_id);
+alter table tbl_emp_cin add constraint fk_emp_cin3 foreign key (tip_emp) references tbl_tipo_empleado(tip_emp_id);
+
+create table tbl_emp_cin(
+emp_id int,
+cin_id int,
+tip_emp int
+);
+
+create table tbl_tipo_empleado(
+tip_emp_id int identity(1,1) not null primary key,
+tip__emp_nom varchar(50) null,
+tip_emp_desc varchar(100) null,
+tip_emp_est varchar(50) null
+);
+select * from tbl_usuario
+
+alter table tbl_suc_pel add constraint fk_suc_peli foreign key(suc_id)
+	references tbl_sucursales(suc_id);
+
+alter table tbl_suc_pel add constraint fk_peli_suc foreign key(pel_id)
+	references tbl_pelicula(pel_id);
+
 alter table tbl_usuario add constraint fk_usu_cli foreign key(cli_id)
 	references tbl_cliente(cli_id);
 
@@ -342,6 +385,8 @@ select * from tbl_cliente cli where cli.cli_id=cli.cli_id
 end
 go
 
+delete from tbl_cliente where cli_id=2
+execute mostrar_cliente
 create proc crear_editar_cliente
 @cli_id int,
 @cli_ruc varchar(13),
@@ -375,8 +420,63 @@ if(@cli_id =0)
 
 /*Fin procesos Cliente*/
 
+/*Inicio procesos Genero*/
+
+create proc mostrar_generos
+as
+begin
+select * from tbl_genero gr where gr.gen_id=gr.gen_id
+end
+go
+
+create proc crear_editar_genero
+@gen_id int,
+@gen_nom varchar(60)
+as 
+begin 
+if(@gen_id =0)
+	begin
+	 insert into tbl_genero values (@gen_nom)
+	end
+	else
+	begin
+	update tbl_genero set gen_nom=@gen_nom  where gen_id=@gen_id
+	end
+	end
+	go
 
 
+
+
+/*Fin procesos Genero*/
+
+
+
+
+
+
+/*Inicio procesos Gpeli*/
+
+
+create proc mostrar_todo_genypel
+as
+begin
+select * from tbl_gene_peli gp where gp.gen_id=gp.gen_id and gp.pel_id=gp.pel_id
+end
+go
+
+execute mostrar_genero_x_pel 'BATMAN: The Dark Knigth Returns'
+
+create proc mostrar_genero_x_pel
+@pel_nom varchar(50)
+as
+begin
+select gen.* from tbl_pelicula pel,tbl_genero gen ,tbl_gene_peli gp where pel.pel_id=pel.pel_id and pel.pel_nom=@pel_nom and gp.pel_id=pel.pel_id and gp.gen_id=gen.gen_id and gen.gen_id=gen.gen_id order by gen.gen_id
+end
+go
+
+/*Fin procesos Genero*/
+alter table tbl_pelicula add pel_reg date null 
 
 drop proc crear_tipo_usuario;
 
@@ -393,5 +493,4 @@ drop proc mostrar_usuario_x_usuario;
 execute mostrar_usuarios;
 
 
-DBCC CHECKIDENT (tbl_pelicula, RESEED, 0);
-
+DBCC CHECKIDENT (tbl_cliente, RESEED, 1);

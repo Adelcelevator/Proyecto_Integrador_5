@@ -42,27 +42,19 @@ namespace core_1.Controllers
 
         //insertar
         [HttpPost]
-        public void Post(int gen_id, string gen_nom)
+        public IHttpActionResult Post(string gen_nom)
         {
-            cn_gen.nuevo_genero(gen_id, gen_nom);
+            cn_gen.nuevo_genero( gen_nom);
+            return Ok();
         }
 
 
         //actualizar
         [HttpPut]
-        public void Put(int gen_id, string gen_nom)
+        public IHttpActionResult Put(int id, string nom)
         {
-            cn_gen.actualizar_genero(gen_id, gen_nom);
-        }
-
-
-        //eliminar
-        [HttpDelete]
-        public IHttpActionResult DELETE(int gen_id)
-        {
-            cn_gen.eliminar_genero(gen_id);
-            HttpResponseMessage respuesta = new HttpResponseMessage();
-            return Ok(respuesta);
+            cn_gen.actualizar_genero(id, nom);
+            return Ok();
         }
     }
 }

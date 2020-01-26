@@ -22,7 +22,7 @@ namespace capa_datos
         {
             DataTable tabla1 = new DataTable();
             comando.Connection = conexion.abrir_conexion();
-            comando.CommandText = "mostrar_gpelis";
+            comando.CommandText = "mostrar_todo_genypel";
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla1.Load(leer);

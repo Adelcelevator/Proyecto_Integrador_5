@@ -95,7 +95,7 @@ namespace capa_datos
             conexion.cerrar_conexion();
         }
 
-        public void actualizar_cliente(int cli_id, string cli_ruc, string cli_nom, string cli_ape, string cli_dire, int cli_tel, string cli_corr, string cli_fnaci)
+        public void actualizar_cliente(int cli_id, string cli_ruc, string cli_nom, string cli_ape, string cli_dire, int cli_tel, string cli_corr, string cli_fnaci,string cli_est)
         {
             comando.Connection = conexion.abrir_conexion();
             comando.CommandText = "crear_editar_cliente";
@@ -108,6 +108,7 @@ namespace capa_datos
             comando.Parameters.AddWithValue("@cli_tel", cli_tel);
             comando.Parameters.AddWithValue("@cli_corr", cli_corr);
             comando.Parameters.AddWithValue("@cli_fnaci", cli_fnaci);
+            comando.Parameters.AddWithValue("@cli_est", cli_est);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.cerrar_conexion();

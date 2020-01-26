@@ -22,8 +22,8 @@ namespace capa_negocio
             foreach (DataRow dr in dt.Rows)
             {
                 ob_genero genero = new ob_genero();
-                genero.gen_id = Convert.ToInt32(dr["ID Genero"].ToString());
-                genero.gen_nom = dr["Genero"].ToString();
+                genero.gen_id = Convert.ToInt32(dr["gen_id"].ToString());
+                genero.gen_nom = dr["gen_nom"].ToString();
                 listagen.Add(genero);
             }
             return listagen;
@@ -46,9 +46,9 @@ namespace capa_negocio
                 return lbgen;
             }
         }
-        public void nuevo_genero(int gen_id, string gen_nom)
+        public void nuevo_genero(string gen_nom)
         {
-            cdgen.nuevo_genero(gen_id, gen_nom);
+            cdgen.nuevo_genero(gen_nom);
         }
 
         public void actualizar_genero(int gen_id, string gen_nom )

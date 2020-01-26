@@ -98,12 +98,12 @@ namespace capa_datos
             conexion.cerrar_conexion();
         }
 
-        public void nuevo_genero(int gen_id, string gen_nom)
+        public void nuevo_genero(string gen_nom)
         {
             comando.Connection = conexion.abrir_conexion();
             comando.CommandText = "crear_editar_genero";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@gen_id", gen_id);
+            comando.Parameters.AddWithValue("@gen_id", 0);
             comando.Parameters.AddWithValue("@gen_nom",gen_nom);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();

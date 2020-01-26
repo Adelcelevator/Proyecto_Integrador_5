@@ -70,7 +70,8 @@ public class mod_usuario implements Serializable{
     public usuario entrar(String usuario) {
         String json;
         try {
-            String urlweb = "http://" +var.getIp()+var.getPuertp()+"/api/Usuario?usu_id =" + usuario;
+            String urlweb = "http://" +var.getIp()+var.getPuertp()+"/api/Usuario?usu_id=" + usuario;
+           //System.out.println("STRING DE CONEXION: "+urlweb);
             URL url = new URL(urlweb);
             HttpURLConnection conec = (HttpURLConnection) url.openConnection();
             conec.setRequestMethod("GET");
@@ -78,7 +79,9 @@ public class mod_usuario implements Serializable{
             if (conec.getResponseCode() == 200) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conec.getInputStream()));
                 json = br.readLine();
+                //System.out.println("SALIDA: "+json);
                 JSONObject obj = new JSONObject((json.replace("[", "")).replace("]", ""));
+                //System.out.println("SALIDA DESDPUES DE: "+ (json.replace("[", "")).replace("]", ""));
                 conec.disconnect();
                 if (obj.getInt("cli_id") == 0) {
                     us.setCli_id(0);
@@ -86,10 +89,17 @@ public class mod_usuario implements Serializable{
                     us.setUsu_id(0);
                     us.setUsu_pass("NO");
                     us.setUsu_usu("NEGADO");
+                    return  us;
                 } else {
-                    us.setCli_id(obj.getInt(""));
+                    us.setCli_id(obj.getInt("cli_id"));
+                    us.setTus_id(obj.getInt("tus_id"));
+                    us.setUsu_id(obj.getInt("usu_id"));
+                    us.setUsu_pass(obj.getString("usu_pass"));
+                    us.setUsu_usu(obj.getString("usu_usu"));
+                    return us;
                 }
             }
+            return  us;
         } catch (IOException | JSONException e) {
             System.out.println("ERROR AL INGRESAR: " + e);
         }

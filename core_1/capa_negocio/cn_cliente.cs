@@ -57,9 +57,9 @@ namespace capa_negocio
             cdcli.nuevo_cliente(cli_ruc, cli_nom, cli_ape, cli_dire, cli_tel, cli_corr, cli_fnaci);
         }
 
-        public void actualizar_cliente(int cli_id, string cli_ruc, string cli_nom, string cli_ape, string cli_dire, int cli_tel, string cli_corr, string cli_fnaci)
+        public void actualizar_cliente(int cli_id, string cli_ruc, string cli_nom, string cli_ape, string cli_dire, int cli_tel, string cli_corr, string cli_fnaci,string cli_est)
         {
-            cdcli.actualizar_cliente(cli_id, cli_ruc, cli_nom, cli_ape, cli_dire, cli_tel, cli_corr, cli_fnaci);
+            cdcli.actualizar_cliente(cli_id, cli_ruc, cli_nom, cli_ape, cli_dire, cli_tel, cli_corr, cli_fnaci,cli_est);
         }
 
         public void eliminar_cliente(int id)

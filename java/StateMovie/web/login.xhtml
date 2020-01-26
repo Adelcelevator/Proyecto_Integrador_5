@@ -15,14 +15,15 @@ and open the template in the editor.
         <link rel="stylesheet" href="resources/css/estilos.css"/>
         <title> LOGIN </title>
     </h:head>
-    <h:body>
+    <h:body class="cuerpo">
         <div class="contenedor-form">
             <div class="toggle">
                 <span> Registrarse </span>
             </div>
             <div class="formulario ">
-                <h2> Iniciar Sesion </h2>
+                <h2> Iniciar Sesión </h2>
                 <h:form>
+                    <p:growl id="growl" showDetail="true" sticky="true" />  
                     <p:inputText id="txt_usu" placeholder="Usuario" value="#{index.usuario}" />
                     <p:password id="txt_contra" placeholder="Contraseña" value="#{index.contra}" />
                     <h:commandButton value="Iniciar Sesion" action="#{index.entrar()}"/>

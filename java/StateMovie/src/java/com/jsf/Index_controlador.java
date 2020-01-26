@@ -6,10 +6,13 @@
 package com.jsf;
 
 import com.modelo.mod_pelicula;
+import com.modelo.mod_usuario;
 import com.objetos.pelicula;
+import com.objetos.usuario;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -19,10 +22,11 @@ import org.json.JSONException;
  *
  * @author Panchito
  */
-@ManagedBean (name="index")
+@ManagedBean(name = "index")
 @SessionScoped
 public class Index_controlador implements Serializable {
 
+    FacesContext conte;
     private String usuario, contra, error, nomp;
 
     public String getNomp() {
@@ -32,7 +36,7 @@ public class Index_controlador implements Serializable {
     public void setNomp(String nomp) {
         this.nomp = nomp;
     }
-    
+
     public String getError() {
         return error;
     }
@@ -68,10 +72,10 @@ public class Index_controlador implements Serializable {
         System.out.println("=================================================================");
         System.out.println("=================================================================");
         System.out.println("=================================================================");
-        try{
-                FacesContext con = FacesContext.getCurrentInstance();
-                con.getExternalContext().redirect("login.xhtml");
-                /*
+        try {
+            FacesContext con = FacesContext.getCurrentInstance();
+            con.getExternalContext().redirect("login.xhtml");
+            /*
                 ====================================================================================
                 para guardar variables de sesion se hace asi
                 FacesContext con= FacesContext.getCurrentInstance();
@@ -81,7 +85,7 @@ public class Index_controlador implements Serializable {
                 FacesContext con= FacesContext.getCurrentInstance();
                 nombre_de_variable = (casteo_de_lo_que_quiero) con.getExternalContext().getSessionMap().get("el_nombre_con_el_que_guarde");
                 
-                 */
+             */
 
         } catch (IOException | JSONException e) {
             System.out.println("=================================================================");
@@ -90,27 +94,52 @@ public class Index_controlador implements Serializable {
     }
 
     public void entrar() {
-        
-    }
-    public void inicio(){
-        try{
-        FacesContext cont=FacesContext.getCurrentInstance();
-        cont.getExternalContext().redirect("index.xhtml");
-        }catch(IOException e){
-            System.out.println("ERROR AL REDIRIGIR: "+e);
+        try {
+            if (!"".equals(usuario) && !"".equals(contra)) {
+                mod_usuario usu = new mod_usuario();
+                usuario us = usu.entrar(usuario);
+                if(us.getUsu_id()!=0){
+                if (us.getUsu_pass().equals(contra)) {
+                    FacesContext context = FacesContext.getCurrentInstance();
+                    context.getExternalContext().getSessionMap().put("usuario", us);
+                    context.getExternalContext().redirect("Protegidos/pagina2.xhtml");
+                } else {
+                    conte = FacesContext.getCurrentInstance();
+                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "Contraseña Incorrecta"));
+                }
+                }else{
+                    conte = FacesContext.getCurrentInstance();
+                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error:","No Existe el Usuario"));
+                }
+            } else {
+                conte = FacesContext.getCurrentInstance();
+                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información:", "Campos Vacios"));
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR AL ENTRAR:" + e);
         }
     }
-    public void buscar(){
-        try{
-            FacesContext conte= FacesContext.getCurrentInstance();
+
+    public void inicio() {
+        try {
+            FacesContext cont = FacesContext.getCurrentInstance();
+            cont.getExternalContext().redirect("index.xhtml");
+        } catch (IOException e) {
+            System.out.println("ERROR AL REDIRIGIR: " + e);
+        }
+    }
+
+    public void buscar() {
+        try {
+            FacesContext conte = FacesContext.getCurrentInstance();
             List<pelicula> lis;
-            mod_pelicula obp= new mod_pelicula();
-            lis =obp.busca(nomp);
-            conte.getExternalContext().getSessionMap().put("termi",nomp);
+            mod_pelicula obp = new mod_pelicula();
+            lis = obp.busca(nomp);
+            conte.getExternalContext().getSessionMap().put("termi", nomp);
             conte.getExternalContext().getSessionMap().put("lista_peli", lis);
             conte.getExternalContext().redirect("peliculas.xhtml");
-        }catch(Exception e){
-            System.out.println("ERROR AL BUSCAR: "+e);
+        } catch (IOException e) {
+            System.out.println("ERROR AL BUSCAR: " + e);
         }
     }
 }

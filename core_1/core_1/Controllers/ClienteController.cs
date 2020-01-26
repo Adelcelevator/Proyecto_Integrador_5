@@ -24,17 +24,19 @@ namespace core_1.Controllers
 
         //insertar
         [HttpPost]
-        public void Post(string cli_ruc, string cli_nom, string cli_ape, string cli_dire, int cli_tel, string cli_corr, string cli_fnaci)
+        public IHttpActionResult Post(string ruc, string nom, string ape, string dire, int tel, string corr, string fnaci)
         {
-            cn_clie.nuevo_cliente(cli_ruc, cli_nom, cli_ape, cli_dire, cli_tel, cli_corr, cli_fnaci);
+            cn_clie.nuevo_cliente(ruc, nom, ape, dire, tel, corr, fnaci);
+            return Ok();
         }
 
 
         //actualizar
         [HttpPut]
-        public void Put(int cli_id, string cli_ruc, string cli_nom, string cli_ape, string cli_dire, int cli_tel, string cli_corr, string cli_fnaci)
+        public IHttpActionResult Put(int id, string ruc, string nom, string ape, string dire, int tel, string corr, string fnaci,string est)
         {
-            cn_clie.actualizar_cliente(cli_id, cli_ruc, cli_nom, cli_ape, cli_dire, cli_tel, cli_corr, cli_fnaci);
+            cn_clie.actualizar_cliente(id, ruc, nom, ape, dire, tel, corr, fnaci,est);
+            return Ok();
         }
 
 

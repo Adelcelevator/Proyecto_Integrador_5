@@ -35,7 +35,7 @@ namespace core_1.Controllers
         catch (Exception)
         {
           HttpResponseMessage mensaje = new HttpResponseMessage();
-        return Ok(mensaje);
+                return NotFound();
         }
 
     }
