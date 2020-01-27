@@ -23,7 +23,7 @@ import org.json.JSONObject;
  *
  * @author Panchito
  */
-public class mod_usuario implements Serializable{
+public class mod_usuario implements Serializable {
 
     usuario us = new usuario();
     Variables var = new Variables();
@@ -70,8 +70,8 @@ public class mod_usuario implements Serializable{
     public usuario entrar(String usuario) {
         String json;
         try {
-            String urlweb = "http://" +var.getIp()+var.getPuertp()+"/api/Usuario?usu_id=" + usuario;
-           //System.out.println("STRING DE CONEXION: "+urlweb);
+            String urlweb = "http://" + var.getIp() + var.getPuertp() + "/api/Usuario?usu_id=" + usuario;
+            //System.out.println("STRING DE CONEXION: "+urlweb);
             URL url = new URL(urlweb);
             HttpURLConnection conec = (HttpURLConnection) url.openConnection();
             conec.setRequestMethod("GET");
@@ -89,7 +89,7 @@ public class mod_usuario implements Serializable{
                     us.setUsu_id(0);
                     us.setUsu_pass("NO");
                     us.setUsu_usu("NEGADO");
-                    return  us;
+                    return us;
                 } else {
                     us.setCli_id(obj.getInt("cli_id"));
                     us.setTus_id(obj.getInt("tus_id"));
@@ -99,10 +99,29 @@ public class mod_usuario implements Serializable{
                     return us;
                 }
             }
-            return  us;
+            return us;
         } catch (IOException | JSONException e) {
             System.out.println("ERROR AL INGRESAR: " + e);
         }
         return us;
+    }
+
+    public boolean registrar(usuario usua) {
+        try {
+            String urlweb = "http://" + var.getIp() + var.getPuertp() + "/api/Usuario?clid=" + usua.getCli_id()+"&usu="+usua.getUsu_usu()+"&contra="+usua.getUsu_pass();
+            //System.out.println("STRING DE CONEXION: "+urlweb);
+            URL url = new URL(urlweb);
+            HttpURLConnection conec = (HttpURLConnection) url.openConnection();
+            conec.setRequestMethod("POST");
+            conec.setRequestProperty("ACCEPT", "application/json");
+            if (conec.getResponseCode() == 200) {
+                return true;
+            }else{
+             return false;   
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR AL REGISTRAR: " + e);
+            return false;
+        }
     }
 }

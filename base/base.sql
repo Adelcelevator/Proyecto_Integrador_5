@@ -150,6 +150,18 @@ emp_ci varchar(10) null,
 emp_est varchar(50) null
 );
 
+create table tbl_emp_usu(
+usu_id int identity(1,1) not null primary key,
+emp_id int null,
+emp_usu varchar(50) null,
+emp_us_contra varchar(50) null,
+usu_emp_est varchar(50)
+);
+
+alter table tbl_emp_usu add constraint fk_usu_emp foreign key(emp_id)
+	references tbl_empleado(emp_id);
+
+
 alter table tbl_emp_cin add constraint fk_emp_cin foreign key (emp_id) references tbl_empleado(emp_id);
 alter table tbl_emp_cin add constraint fk_emp_cin2 foreign key (cin_id) references tbl_cine(cin_id);
 alter table tbl_emp_cin add constraint fk_emp_cin3 foreign key (tip_emp) references tbl_tipo_empleado(tip_emp_id);
@@ -494,3 +506,9 @@ execute mostrar_usuarios;
 
 
 DBCC CHECKIDENT (tbl_cliente, RESEED, 1);
+
+select * from tbl_empleado;
+
+select * from tbl_usuario
+
+

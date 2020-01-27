@@ -27,7 +27,7 @@ import org.json.JSONException;
 public class Index_controlador implements Serializable {
 
     FacesContext conte;
-    private String usuario, contra, error, nomp;
+    private String usuario, contra, nomp;
 
     public String getNomp() {
         return nomp;
@@ -35,14 +35,6 @@ public class Index_controlador implements Serializable {
 
     public void setNomp(String nomp) {
         this.nomp = nomp;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 
     public String getUsuario() {
@@ -98,18 +90,18 @@ public class Index_controlador implements Serializable {
             if (!"".equals(usuario) && !"".equals(contra)) {
                 mod_usuario usu = new mod_usuario();
                 usuario us = usu.entrar(usuario);
-                if(us.getUsu_id()!=0){
-                if (us.getUsu_pass().equals(contra)) {
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    context.getExternalContext().getSessionMap().put("usuario", us);
-                    context.getExternalContext().redirect("Protegidos/pagina2.xhtml");
+                if (us.getUsu_id() != 0) {
+                    if (us.getUsu_pass().equals(contra)) {
+                        FacesContext context = FacesContext.getCurrentInstance();
+                        context.getExternalContext().getSessionMap().put("usuario", us);
+                        context.getExternalContext().redirect("Protegidos/pagina2.xhtml");
+                    } else {
+                        conte = FacesContext.getCurrentInstance();
+                        conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "Contraseña Incorrecta"));
+                    }
                 } else {
                     conte = FacesContext.getCurrentInstance();
-                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "Contraseña Incorrecta"));
-                }
-                }else{
-                    conte = FacesContext.getCurrentInstance();
-                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error:","No Existe el Usuario"));
+                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "No Existe el Usuario"));
                 }
             } else {
                 conte = FacesContext.getCurrentInstance();
@@ -142,4 +134,13 @@ public class Index_controlador implements Serializable {
             System.out.println("ERROR AL BUSCAR: " + e);
         }
     }
+
+    public void registrar() {
+        try{
+            
+        }catch(Exception e){
+            System.out.println("REGISTRAR: "+e);
+        }
+    }
+
 }
