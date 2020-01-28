@@ -5,7 +5,7 @@
  */
 package com.modelo;
 
-import com.objetos.pelicula;
+import com.objetos.ob_pelicula;
 import com.vari.Variables;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,11 +25,11 @@ import org.json.JSONObject;
  */
 public class mod_pelicula implements Serializable {
 
-    pelicula pel = new pelicula();
+    ob_pelicula pel = new ob_pelicula();
     Variables var = new Variables();
-    List<pelicula> lispe = new ArrayList<>();
+    List<ob_pelicula> lispe = new ArrayList<>();
 
-    public List<pelicula> todas_pel() {
+    public List<ob_pelicula> todas_pel() {
         lispe.clear();
         try {
             String wurl = "http://" + var.getIp() + var.getPuertp() + "/api/Pelicula";
@@ -42,7 +42,7 @@ public class mod_pelicula implements Serializable {
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 JSONArray arr = new JSONArray(br.readLine());
                 for (int i = 0; i < arr.length(); i++) {
-                    pelicula peli = new pelicula();
+                    ob_pelicula peli = new ob_pelicula();
                     JSONObject obj = new JSONObject(arr.get(i));
                     peli.setPel_id(obj.getInt("pel_id"));
                     peli.setPel_dire(obj.getString("pel_dire"));
@@ -62,7 +62,7 @@ public class mod_pelicula implements Serializable {
         return lispe;
     }
 
-    public List<pelicula> busca(String nomp) {
+    public List<ob_pelicula> busca(String nomp) {
         lispe.clear();
         try {
             String wurl = "http://" + var.getIp() + var.getPuertp() + "/api/Pelicula?pel_id=%25" + nomp + "%25";
@@ -79,7 +79,7 @@ public class mod_pelicula implements Serializable {
                     JSONArray arr = new JSONArray(salida);
                     System.out.println("# DE OBJETOS: "+arr.length());
                     for (int i = 0; i < arr.length(); i++) {
-                        pelicula peli = new pelicula();
+                        ob_pelicula peli = new ob_pelicula();
                         JSONObject obj = arr.getJSONObject(i);
                         peli.setPel_id(obj.getInt("pel_id"));
                         peli.setPel_dire(obj.getString("pel_dire"));

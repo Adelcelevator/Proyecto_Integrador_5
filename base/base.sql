@@ -509,6 +509,7 @@ DBCC CHECKIDENT (tbl_cliente, RESEED, 1);
 
 select * from tbl_empleado;
 
-select * from tbl_usuario
+select * from tbl_usuario;
 
 
+update tbl_usuario set cli_id=2 where usu_id=2;

@@ -5,7 +5,7 @@
  */
 package com.modelo;
 
-import com.objetos.usuario;
+import com.objetos.ob_usuario;
 import com.vari.Variables;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,11 +25,11 @@ import org.json.JSONObject;
  */
 public class mod_usuario implements Serializable {
 
-    usuario us = new usuario();
+    ob_usuario us = new ob_usuario();
     Variables var = new Variables();
-    List<usuario> listus = new ArrayList<>();
+    List<ob_usuario> listus = new ArrayList<>();
 
-    public List<usuario> todos_usu() {
+    public List<ob_usuario> todos_usu() {
         listus.clear();
         try {
             final String urlweb = "http://" + var.getIp() + var.getPuertp() + "/api/Usuario";
@@ -47,7 +47,7 @@ public class mod_usuario implements Serializable {
                     JSONArray json = new JSONArray(output);
                     System.out.println("TAMA: " + json.length());
                     for (int i = 0; i < json.length(); i++) {
-                        usuario usua = new usuario();
+                        ob_usuario usua = new ob_usuario();
                         JSONObject jsn = json.getJSONObject(i);
                         usua.setUsu_id(jsn.getInt("usu_id"));
                         usua.setCli_id(jsn.getInt("cli_id"));
@@ -67,7 +67,7 @@ public class mod_usuario implements Serializable {
         return listus;
     }
 
-    public usuario entrar(String usuario) {
+    public ob_usuario entrar(String usuario) {
         String json;
         try {
             String urlweb = "http://" + var.getIp() + var.getPuertp() + "/api/Usuario?usu_id=" + usuario;
@@ -106,7 +106,7 @@ public class mod_usuario implements Serializable {
         return us;
     }
 
-    public boolean registrar(usuario usua) {
+    public boolean registrar(ob_usuario usua) {
         try {
             String urlweb = "http://" + var.getIp() + var.getPuertp() + "/api/Usuario?clid=" + usua.getCli_id()+"&usu="+usua.getUsu_usu()+"&contra="+usua.getUsu_pass();
             //System.out.println("STRING DE CONEXION: "+urlweb);

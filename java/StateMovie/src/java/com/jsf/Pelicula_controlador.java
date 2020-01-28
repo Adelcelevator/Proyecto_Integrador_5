@@ -5,7 +5,7 @@
  */
 package com.jsf;
 
-import com.objetos.pelicula;
+import com.objetos.ob_pelicula;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +30,11 @@ public class Pelicula_controlador implements Serializable{
         this.termi = termi;
     }
     
-    public List<pelicula> pelis= new ArrayList<>();
+    public List<ob_pelicula> pelis= new ArrayList<>();
     FacesContext conte= FacesContext.getCurrentInstance();
-    public List<pelicula> resulBus(){
+    public List<ob_pelicula> resulBus(){
         try{
-            pelis = (List<pelicula>) conte.getExternalContext().getSessionMap().get("lista_peli");
+            pelis = (List<ob_pelicula>) conte.getExternalContext().getSessionMap().get("lista_peli");
             return pelis;
         }catch(Exception e){
             System.out.println("ERROR AL BUSCAR EN LA PAG 2: "+e);

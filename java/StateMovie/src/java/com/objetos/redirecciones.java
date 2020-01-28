@@ -20,7 +20,7 @@ public class redirecciones {
     public void redirlog(){
         try {
          conte=FacesContext.getCurrentInstance();
-         conte.getExternalContext().redirect("faces/login.xhtml");
+         conte.getExternalContext().redirect("/StateMovie/faces/login.xhtml");
         } catch (IOException e) {
             System.out.println("ERROR AL REDIRIGIR AL LOGIN: "+e);
         }

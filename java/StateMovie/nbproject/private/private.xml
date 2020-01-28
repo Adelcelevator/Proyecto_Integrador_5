@@ -4,14 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/web/login.xhtml</file>
-            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/web/resources/css/estilos.css</file>
-            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/web/Protegidos/pagina2.xhtml</file>
-            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/src/java/com/jsf/Pelicula_controlador.java</file>
-            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/web/index.xhtml</file>
             <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/src/java/com/modelo/mod_usuario.java</file>
-            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/src/java/com/objetos/redirecciones.java</file>
-            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/web/peliculas.xhtml</file>
-            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/src/java/com/jsf/Index_controlador.java</file>
+            <file>file:/C:/Users/Panchito/Desktop/afs/visual/Proyecto_Integrador/java/StateMovie/src/java/com/jsf/Login_controlador.java</file>
         </group>
     </open-files>
 </project-private>

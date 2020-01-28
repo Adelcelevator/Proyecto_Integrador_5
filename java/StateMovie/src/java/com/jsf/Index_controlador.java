@@ -5,10 +5,12 @@
  */
 package com.jsf;
 
+import com.modelo.mod_cliente;
 import com.modelo.mod_pelicula;
 import com.modelo.mod_usuario;
-import com.objetos.pelicula;
-import com.objetos.usuario;
+import com.objetos.ob_cliente;
+import com.objetos.ob_pelicula;
+import com.objetos.ob_usuario;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -27,7 +29,7 @@ import org.json.JSONException;
 public class Index_controlador implements Serializable {
 
     FacesContext conte;
-    private String usuario, contra, nomp;
+    private String nomp;
 
     public String getNomp() {
         return nomp;
@@ -36,23 +38,7 @@ public class Index_controlador implements Serializable {
     public void setNomp(String nomp) {
         this.nomp = nomp;
     }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContra() {
-        return contra;
-    }
-
-    public void setContra(String contra) {
-        this.contra = contra;
-    }
-
+    
     public Index_controlador() {
     }
 
@@ -85,33 +71,6 @@ public class Index_controlador implements Serializable {
         }
     }
 
-    public void entrar() {
-        try {
-            if (!"".equals(usuario) && !"".equals(contra)) {
-                mod_usuario usu = new mod_usuario();
-                usuario us = usu.entrar(usuario);
-                if (us.getUsu_id() != 0) {
-                    if (us.getUsu_pass().equals(contra)) {
-                        FacesContext context = FacesContext.getCurrentInstance();
-                        context.getExternalContext().getSessionMap().put("usuario", us);
-                        context.getExternalContext().redirect("Protegidos/pagina2.xhtml");
-                    } else {
-                        conte = FacesContext.getCurrentInstance();
-                        conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "Contraseña Incorrecta"));
-                    }
-                } else {
-                    conte = FacesContext.getCurrentInstance();
-                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "No Existe el Usuario"));
-                }
-            } else {
-                conte = FacesContext.getCurrentInstance();
-                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información:", "Campos Vacios"));
-            }
-        } catch (IOException e) {
-            System.out.println("ERROR AL ENTRAR:" + e);
-        }
-    }
-
     public void inicio() {
         try {
             FacesContext cont = FacesContext.getCurrentInstance();
@@ -124,7 +83,7 @@ public class Index_controlador implements Serializable {
     public void buscar() {
         try {
             FacesContext conte = FacesContext.getCurrentInstance();
-            List<pelicula> lis;
+            List<ob_pelicula> lis;
             mod_pelicula obp = new mod_pelicula();
             lis = obp.busca(nomp);
             conte.getExternalContext().getSessionMap().put("termi", nomp);
@@ -134,13 +93,4 @@ public class Index_controlador implements Serializable {
             System.out.println("ERROR AL BUSCAR: " + e);
         }
     }
-
-    public void registrar() {
-        try{
-            
-        }catch(Exception e){
-            System.out.println("REGISTRAR: "+e);
-        }
-    }
-
 }
