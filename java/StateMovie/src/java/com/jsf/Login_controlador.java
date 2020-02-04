@@ -5,7 +5,9 @@
  */
 package com.jsf;
 
+import com.modelo.mod_cliente;
 import com.modelo.mod_usuario;
+import com.objetos.ob_cliente;
 import com.objetos.ob_usuario;
 import java.io.IOException;
 import java.io.Serializable;
@@ -53,7 +55,7 @@ public class Login_controlador implements Serializable {
                 }
             } else {
                 conte = FacesContext.getCurrentInstance();
-                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información:", "Campos Vacios"));
+                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Campos Vacios"));
             }
         } catch (IOException e) {
             System.out.println("ERROR AL ENTRAR:" + e);
@@ -67,7 +69,22 @@ public class Login_controlador implements Serializable {
                 conte = FacesContext.getCurrentInstance();
                 conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Usuario ya registrado"));
             } else {
-                rende = true;
+                if (ape.equals("") && corr.equals("") && dire.equals("") && nom.equals("") && ci.equals("") && tele.equals("")) {
+                    conte = FacesContext.getCurrentInstance();
+                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Campos Vacios"));
+                }else{
+                    mod_cliente clie = new mod_cliente();
+                    ob_cliente nuevo = new ob_cliente();
+                    nuevo.setCli_ape(ape);
+                    nuevo.setCli_corr(corr);
+                    nuevo.setCli_dire(dire);
+                    nuevo.setCli_fnaci(fenaci.toString());
+                    nuevo.setCli_nom(nom);
+                    nuevo.setCli_ruc(ci);
+                    nuevo.setCli_tel(tele);
+                    clie.registrar(nuevo);
+                    
+                }
             }
         } catch (Exception e) {
             System.out.println("REGISTRAR: " + e);

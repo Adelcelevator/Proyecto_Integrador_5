@@ -172,6 +172,8 @@ cin_id int,
 tip_emp int
 );
 
+select * from tbl_empleado
+
 create table tbl_tipo_empleado(
 tip_emp_id int identity(1,1) not null primary key,
 tip__emp_nom varchar(50) null,
@@ -179,6 +181,8 @@ tip_emp_desc varchar(100) null,
 tip_emp_est varchar(50) null
 );
 select * from tbl_usuario
+
+drop table tbl_tipo_empleado
 
 alter table tbl_suc_pel add constraint fk_suc_peli foreign key(suc_id)
 	references tbl_sucursales(suc_id);
@@ -390,12 +394,24 @@ create proc crear_editar_cine
 
 
 /*Inicio procesos Cliente*/
+
 create proc mostrar_cliente
 as
 begin
 select * from tbl_cliente cli where cli.cli_id=cli.cli_id
 end
 go
+
+execute mostrar_cliente_x_ruc '1725080186'
+
+create proc mostrar_cliente_x_ruc
+@cliente varchar(50)
+as
+begin
+select * from tbl_cliente cli where cli.cli_id=cli.cli_id and cli.cli_ruc=@cliente
+end
+go
+
 
 delete from tbl_cliente where cli_id=2
 execute mostrar_cliente
@@ -511,5 +527,39 @@ select * from tbl_empleado;
 
 select * from tbl_usuario;
 
+alter table tbl_emp_usu add tus_id int null
 
 update tbl_usuario set cli_id=2 where usu_id=2;
+
+select usu.*,cin.cin_id,cin.tip_emp  from tbl_emp_usu usu,tbl_emp_cin cin where usu.emp_usu=usu.emp_usu and cin.emp_id=usu.emp_id and cin.emp_id=cin.emp_id
+
+create proc mostrar_empleado_us
+as
+begin
+select usu.*,cin.cin_id,cin.tip_emp  from tbl_emp_usu usu,tbl_emp_cin cin where cin.emp_id=usu.emp_id and cin.emp_id=cin.emp_id
+end
+go
+
+create proc mostrar_empleado_x_usu
+@usuario varchar(100)
+as 
+begin
+select usu.*,cin.cin_id,cin.tip_emp  from tbl_emp_usu usu,tbl_emp_cin cin where usu.emp_usu=@usuario and cin.emp_id=usu.emp_id and cin.emp_id=cin.emp_id
+end
+go
+
+execute mostrar_empleado_x_usu 'adel'
+
+select * from tbl_empleado
+
+
+create proc mostrar_empleado
+as
+begin
+select * from tbl_empleado emp where emp.emp_id=emp.emp_id 
+end
+go
+
+drop proc mostrar_empleado
+
+execute mostrar_empleado
