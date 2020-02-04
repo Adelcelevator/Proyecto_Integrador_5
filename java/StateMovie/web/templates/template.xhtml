@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>Dashboard</title>
+        <link rel="icon" type="image/png" href="../resources/images/icons/favicon.ico"/>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../resources/assets/vendor/bootstrap/css/bootstrap.min.css"/>
+        <link href="../resources/assets/vendor/fonts/circular-std/style.css" rel="stylesheet"/>
+        <link href="../resources/css/mio.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="../resources/assets/libs/css/style.css"/>
+        <link rel="stylesheet" href="../resources/assets/vendor/fonts/fontawesome/css/fontawesome-all.css"/>
+        <link rel="stylesheet" href="../resources/assets/vendor/charts/chartist-bundle/chartist.css"/>
+        <link rel="stylesheet" href="../resources/assets/vendor/charts/morris-bundle/morris.css"/>
+        <link rel="stylesheet" href="../resources/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css"/>
+        <link rel="stylesheet" href="../resources/assets/vendor/charts/c3charts/c3.css"/>
+        <link rel="stylesheet" href="../resources/assets/vendor/fonts/flag-icon-css/flag-icon.min.css"/>
+        <h:outputStylesheet name="../css/default.css"/>
+        <h:outputStylesheet name="../css/cssLayout.css"/>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <div class="dashboard-main-wrapper">
+                <!-- ============================================================== -->
+                <!-- navbar -->
+                <!-- ============================================================== -->
+                <div class="dashboard-header">
+                    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                        <h:outputText class="navbar-brand" value="#{pag2.nomEmp()}"/>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto navbar-right-top">
+                                <li class="nav-item dropdown connection">
+                                    <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+                                        <li>
+                                            <div class="conntection-footer"><a href="#">More</a></div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown nav-user">
+                                    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../resources/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"/></a>
+                                    <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                        <div class="nav-user-info">
+                                            <h5 class="mb-0 text-white nav-user-name"><h:outputText value="#{pag2.nomusu()}"/></h5>
+                                            <span class="status"></span><span class="ml-2">Available</span>
+                                        </div>
+                                        <h:commandLink class="dropdown-item" value="Mi Cuenta">&nbsp;<i class="fas fa-user mr-2"></i></h:commandLink>
+                                        <h:commandLink class="dropdown-item" action="#{pag2.salir()}" value="Cerrar Sesion">&nbsp;<i class="fas fa-power-off mr-2"></i></h:commandLink>
+                                        <!--<a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>-->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end navbar -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- left sidebar -->
+                <!-- ============================================================== -->
+                <div class="nav-left-sidebar sidebar-dark">
+                    <div class="menu-list">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="d-xl-none d-lg-none link" href="#">Panel Administrativo</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav flex-column">
+                                    <li class="nav-divider">
+                                        Menu
+                                    </li>                     
+                                    <li class="nav-item ">
+                                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle link"></i>Panel Administrativo <span class="badge badge-success">6</span></a>
+                                        <div id="submenu-1" class="collapse submenu" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Empresas</a>
+                                                    <div id="submenu-1-2" class="collapse submenu" style="">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item">
+                                                                <h:commandLink class="nav-link link">Mostrar Empresas</h:commandLink>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <h:commandLink class="nav-link link">Agregar Empresas</h:commandLink>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <h:commandLink class="nav-link link">Editar Empresas</h:commandLink>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <h:commandLink class="nav-link link">Eliminar Empresas</h:commandLink>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="dashboard-finance.html">Finance</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="dashboard-sales.html">Sales</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
+                                                    <div id="submenu-1-1" class="collapse submenu" style="">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="dashboard-influencer.html">Influencer</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="influencer-finder.html">Influencer Finder</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="influencer-profile.html">Influencer Profile</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>                               
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
+                                        <div id="submenu-2" class="collapse submenu" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="pages/general.html">General</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="pages/carousel.html">Carousel</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="pages/listgroup.html">List Group</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="pages/typography.html">Typography</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="pages/accordions.html">Accordions</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="pages/tabs.html">Tabs</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>                  
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end left sidebar -->
+                <div class="dashboard-wrapper">
+                    <div class="dashboard-ecommerce">
+                        <div class="container-fluid dashboard-content ">
+                            <!-- ============================================================== -->
+                            <div class="row">
+                                <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+                                    <div class="card">
+                                        <div class="table-responsive">
+                                            <ui:insert name="bodys"></ui:insert>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<script src="../resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>-->
+
+            <script src="../resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
+            <script src="../resources/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+
+            <script src="../resources/assets/libs/js/main-js.js"></script>
+
+            <script src="../resources/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+
+            <script src="../resources/assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+
+            <script src="../resources/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+            <script src="../resources/assets/vendor/charts/morris-bundle/morris.js"></script>
+
+            <script src="../resources/assets/vendor/charts/c3charts/c3.min.js"></script>
+            <script src="../resources/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+            <script src="../resources/assets/vendor/charts/c3charts/C3chartjs.js"></script>
+            <script src="../resources/assets/libs/js/dashboard-ecommerce.js"></script>
+        </h:form>
+    </h:body>
+</html>

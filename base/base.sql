@@ -563,3 +563,31 @@ go
 drop proc mostrar_empleado
 
 execute mostrar_empleado
+
+create proc crear_editar_empleado
+@ci varchar(50),
+@nombre varchar(50),
+@ape varchar(50),
+@naci varchar(50),
+@reg varchar(50),
+@dire varchar(50),
+@tele varchar(50),
+@cel varchar(50),
+@est varchar(50),
+@id int
+as
+begin
+	if(@id =0)
+		begin
+		insert into tbl_empleado values (@nombre,@ape,@naci,@reg,@dire,@tele,@cel,@ci,'Activo')
+		end
+	else
+	begin
+	update tbl_empleado set emp_ci=@ci,emp_nom=@nombre,emp_ape=@ape,emp_fnac=@naci,emp_freg=@reg,emp_dire=@dire,emp_tele=@tele,emp_cel=@cel, emp_est = @est where emp_id=@id
+	end
+end
+go
+
+execute crear_editar_empleado '1725080186','Eduardo','Montenegro','13/05/1999','4/2/2020','La Magdalena','2663645','0987950285','Activo',0
+
+e
