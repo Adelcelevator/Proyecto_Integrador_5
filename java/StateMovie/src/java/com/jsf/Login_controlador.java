@@ -11,6 +11,7 @@ import com.objetos.ob_cliente;
 import com.objetos.ob_usuario;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.invoke.MethodHandles;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -35,7 +36,14 @@ public class Login_controlador implements Serializable {
 
     public Login_controlador() {
     }
-
+public void prueba_de_reg(){
+    try{
+    conte = FacesContext.getCurrentInstance();
+    conte.getExternalContext().redirect("Protegidos/Administracion/Administrativo.xhtml");
+    }catch(Exception e){
+        System.out.println("ERROR AL REDIRIGIR: "+e);
+    }
+}
     public void entrar() {
         try {
             if (!"".equals(logusuario) && !"".equals(logcontra)) {

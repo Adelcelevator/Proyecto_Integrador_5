@@ -20,8 +20,8 @@
         <link rel="stylesheet" href="../resources/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css"/>
         <link rel="stylesheet" href="../resources/assets/vendor/charts/c3charts/c3.css"/>
         <link rel="stylesheet" href="../resources/assets/vendor/fonts/flag-icon-css/flag-icon.min.css"/>
-        <h:outputStylesheet name="../css/default.css"/>
-        <h:outputStylesheet name="../css/cssLayout.css"/>
+        <link rel="stylesheet" href="../resources/css/default.css"/>
+        <link rel="stylesheet" href="../resources/css/cssLayout.css"/>
     </h:head>
 
     <h:body>
@@ -32,7 +32,7 @@
                 <!-- ============================================================== -->
                 <div class="dashboard-header">
                     <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                        <h:outputText class="navbar-brand" value="#{pag2.nomEmp()}"/>
+                        <h:outputText class="navbar-brand" value=""/>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -49,11 +49,11 @@
                                     <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../resources/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"/></a>
                                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                         <div class="nav-user-info">
-                                            <h5 class="mb-0 text-white nav-user-name"><h:outputText value="#{pag2.nomusu()}"/></h5>
+                                            <h5 class="mb-0 text-white nav-user-name"><h:outputText value="a"/></h5>
                                             <span class="status"></span><span class="ml-2">Available</span>
                                         </div>
                                         <h:commandLink class="dropdown-item" value="Mi Cuenta">&nbsp;<i class="fas fa-user mr-2"></i></h:commandLink>
-                                        <h:commandLink class="dropdown-item" action="#{pag2.salir()}" value="Cerrar Sesion">&nbsp;<i class="fas fa-power-off mr-2"></i></h:commandLink>
+                                        <h:commandLink class="dropdown-item"  value="Cerrar Sesion">&nbsp;<i class="fas fa-power-off mr-2"></i></h:commandLink>
                                         <!--<a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>-->
                                     </div>
                                 </li>
@@ -197,6 +197,7 @@
                 </div>
             </div>
             <!--<script src="../resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>-->
+            <h:outputScript library="primefaces" name="jquery/jquery.js"/>
 
             <script src="../resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
