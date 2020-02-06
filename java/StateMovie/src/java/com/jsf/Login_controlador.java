@@ -6,13 +6,15 @@
 package com.jsf;
 
 import com.modelo.mod_cliente;
+import com.modelo.mod_emp_us;
 import com.modelo.mod_usuario;
 import com.objetos.ob_cliente;
+import com.objetos.ob_emp_us;
 import com.objetos.ob_usuario;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.invoke.MethodHandles;
 import java.util.Date;
+import java.util.Optional;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,9 +27,12 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "login")
 @SessionScoped
 public class Login_controlador implements Serializable {
-
-    private mod_usuario usu = new mod_usuario();
+    
+    private final mod_emp_us memple = new mod_emp_us();
+    private final mod_usuario usu = new mod_usuario();
     private ob_usuario us;
+    private ob_emp_us emp;
+    
     FacesContext conte;
     String ci, nom, ape, dire, tele, corr, logusuario, logcontra, nusuario, ncontra, nconf;
     boolean rende = false;
@@ -50,20 +55,30 @@ public void prueba_de_reg(){
                 us = usu.entrar(logusuario);
                 if (us.getUsu_id() != 0) {
                     if (us.getUsu_pass().equals(logcontra)) {
-                        FacesContext context = FacesContext.getCurrentInstance();
-                        context.getExternalContext().getSessionMap().put("usuario", us);
-                        context.getExternalContext().redirect("Protegidos/pagina2.xhtml");
+                        conte = FacesContext.getCurrentInstance();
+                        conte.getExternalContext().getSessionMap().put("usuario", us);
+                        conte.getExternalContext().redirect("Protegidos/pagina2.xhtml");
                     } else {
                         conte = FacesContext.getCurrentInstance();
-                        conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "Contraseña Incorrecta"));
+                        conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Info", "Contraseña Incorrecta"));
                     }
                 } else {
+                    emp = memple.ver(logusuario);
+                    if(emp.getUsu_id() != 0 && emp.getEmp_id() != 0){
+                        if(emp.getEmp_us_contra().equals(logcontra)){
+                            conte = FacesContext.getCurrentInstance();
+                            conte.getExternalContext().getSessionMap().put("empleado", emp);
+                            conte.getExternalContext().redirect("Protegidos/Administracion/Administrativo.xhtml");
+                        }else{
+                            conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Contraseña Incorrecta"));
+                        }
+                    }
                     conte = FacesContext.getCurrentInstance();
-                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "No Existe el Usuario"));
+                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No Existe el Usuario"));
                 }
             } else {
                 conte = FacesContext.getCurrentInstance();
-                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Campos Vacios"));
+                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Campos Vacios"));
             }
         } catch (IOException e) {
             System.out.println("ERROR AL ENTRAR:" + e);
