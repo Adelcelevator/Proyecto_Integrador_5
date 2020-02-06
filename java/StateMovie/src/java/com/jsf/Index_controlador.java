@@ -5,16 +5,11 @@
  */
 package com.jsf;
 
-import com.modelo.mod_cliente;
 import com.modelo.mod_pelicula;
-import com.modelo.mod_usuario;
-import com.objetos.ob_cliente;
 import com.objetos.ob_pelicula;
-import com.objetos.ob_usuario;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -38,7 +33,7 @@ public class Index_controlador implements Serializable {
     public void setNomp(String nomp) {
         this.nomp = nomp;
     }
-    
+
     public Index_controlador() {
     }
 
@@ -73,8 +68,8 @@ public class Index_controlador implements Serializable {
 
     public void inicio() {
         try {
-            FacesContext cont = FacesContext.getCurrentInstance();
-            cont.getExternalContext().redirect("index.xhtml");
+            conte = FacesContext.getCurrentInstance();
+            conte.getExternalContext().redirect("index.xhtml");
         } catch (IOException e) {
             System.out.println("ERROR AL REDIRIGIR: " + e);
         }
@@ -82,7 +77,7 @@ public class Index_controlador implements Serializable {
 
     public void buscar() {
         try {
-            FacesContext conte = FacesContext.getCurrentInstance();
+            conte = FacesContext.getCurrentInstance();
             List<ob_pelicula> lis;
             mod_pelicula obp = new mod_pelicula();
             lis = obp.busca(nomp);
@@ -93,4 +88,17 @@ public class Index_controlador implements Serializable {
             System.out.println("ERROR AL BUSCAR: " + e);
         }
     }
+    /*public void buscar() {
+        try {
+            FacesContext x = FacesContext.getCurrentInstance();
+            List<ob_pelicula> lis;
+            mod_pelicula obp = new mod_pelicula();
+            lis = obp.busca(nomp);
+            x.getExternalContext().getSessionMap().put("termi", nomp);
+            x.getExternalContext().getSessionMap().put("lista_peli", lis);
+            x.getExternalContext().redirect("faces/peliculas.xhtml");
+        } catch (IOException e) {
+            System.out.println("ERROR AL BUSCAR: " + e);
+        }
+    }*/
 }

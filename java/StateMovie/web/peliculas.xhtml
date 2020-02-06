@@ -7,31 +7,47 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Peliculas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="resources/css/estilosgene.css"/>
     </h:head>
-    <h:body class="cuerpo">
-        <h:form>
-            <h:inputText value="#{pelis.termi()}"/>
-            <br/>
-            <br/>
-            <br/>            
-            <div class="table">
-                <p:dataTable  id="tabla_emp" class="table" var="pelicula" value="#{pelis.resulBus()}">
-                    <p:column id="col_ruc" class="bg-light" headerText="Nombre de la Pelicula">
-                        <h:outputText class="border-0" value="#{pelicula.pel_nom}" />
-                    </p:column>
-                    <p:column id="col_nom" class="bg-light" headerText="Director">
-                        <h:outputText class="border-0" value="#{pelicula.pel_dire}" />
-                    </p:column>
-                    <p:column id="col_ape" class="bg-light" headerText="Productora">
-                        <h:outputText class="border-0" value="#{pelicula.pel_pro}" />
-                    </p:column>
-                </p:dataTable>
-            </div>
-        </h:form>
+    <h:body>
+        <ui:composition template="templates/template_index.xhtml">
+            <ui:define name="info_dentro"> 
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <h:form>  
+                    <div class="table">
+                        <p:dataTable  id="tabla_emp" class="table"  var="pelicula" value="#{pelis.resulBus()}">
+                            <p:column id="col_ruc" class="bg-light">
+                                <table border="0">
+                                    <tr>
+                                        <td>
+                                            <img style="img-fluid" class="border-0" src="#{pelicula.pel_linkba}" width="450px" height="200px" alt="banner" />
+                                        </td>                            
+                                        <td>
+                                            <br/><br/>Director: <h:outputText class="border-0" value="#{pelicula.pel_dire}" />
+                                            <br/><br/>Productora: <h:outputText class="border-0" value="#{pelicula.pel_pro}" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

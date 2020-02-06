@@ -9,10 +9,11 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
+        <link rel="stylesheet" href="../../resources/css/estilosgene.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
-        <ui:composition template="../../templates/template.xhtml">
+    <h:body class="cuerpo">
+        <ui:composition template="../../templates/template_index.xhtml">
             <ui:define name="bodys">
                 <h5 class="card-header">Empleados de  <h:outputText value="j"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:commandButton class="btn btn-primary" value="Nuevo" type="button" onclick="PF('nuevo').show();"/>&nbsp;<h:commandButton class="btn btn-primary" value="Editar" type="button" onclick="PF('editar').show();"/>&nbsp;<h:commandButton class="btn btn-danger" value="Eliminar" type="button" onclick="PF('eliminar').show();"/></h5>
             </ui:define>    

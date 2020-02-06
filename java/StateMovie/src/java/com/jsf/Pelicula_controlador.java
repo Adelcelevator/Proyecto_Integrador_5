@@ -31,9 +31,12 @@ public class Pelicula_controlador implements Serializable{
     }
     
     public List<ob_pelicula> pelis= new ArrayList<>();
-    FacesContext conte= FacesContext.getCurrentInstance();
+    
+    FacesContext conte;
+    
     public List<ob_pelicula> resulBus(){
         try{
+            conte= FacesContext.getCurrentInstance();
             pelis = (List<ob_pelicula>) conte.getExternalContext().getSessionMap().get("lista_peli");
             return pelis;
         }catch(Exception e){
@@ -44,6 +47,7 @@ public class Pelicula_controlador implements Serializable{
     }
     
     public String termi(){
+        conte= FacesContext.getCurrentInstance();
         termi = (String) conte.getExternalContext().getSessionMap().get("termi");
         return termi;
     }

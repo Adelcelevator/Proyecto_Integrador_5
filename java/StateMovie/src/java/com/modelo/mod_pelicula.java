@@ -75,9 +75,7 @@ public class mod_pelicula implements Serializable {
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String salida;
                 while ((salida = br.readLine()) != null) {
-                    System.out.println("SALIDA: "+salida);
                     JSONArray arr = new JSONArray(salida);
-                    System.out.println("# DE OBJETOS: "+arr.length());
                     for (int i = 0; i < arr.length(); i++) {
                         ob_pelicula peli = new ob_pelicula();
                         JSONObject obj = arr.getJSONObject(i);
