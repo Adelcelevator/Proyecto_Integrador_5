@@ -37,29 +37,11 @@ public class Index_controlador implements Serializable {
     public Index_controlador() {
     }
 
-    public void consumo() {
+    public void redi_log() {
 
-        System.out.println("=================================================================");
-        System.out.println("=================================================================");
-        System.out.println("=================================================================");
-        System.out.println("=================================================================");
-        System.out.println("=================================================================");
-        System.out.println("=================================================================");
         try {
             FacesContext con = FacesContext.getCurrentInstance();
             con.getExternalContext().redirect("login.xhtml");
-            /*
-                ====================================================================================
-                para guardar variables de sesion se hace asi
-                FacesContext con= FacesContext.getCurrentInstance();
-                con.getExternalContext().getSessionMap().put(nombre_cualquiera, valor_a_guardar);
-                ====================================================================================
-                para leer variables de sesion se hace asi
-                FacesContext con= FacesContext.getCurrentInstance();
-                nombre_de_variable = (casteo_de_lo_que_quiero) con.getExternalContext().getSessionMap().get("el_nombre_con_el_que_guarde");
-                
-             */
-
         } catch (IOException | JSONException e) {
             System.out.println("=================================================================");
             System.out.println("ERROR: " + e);

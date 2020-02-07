@@ -70,17 +70,20 @@ public void prueba_de_reg(){
                             conte.getExternalContext().getSessionMap().put("empleado", emp);
                             conte.getExternalContext().redirect("Protegidos/Administracion/Administrativo.xhtml");
                         }else{
+                            conte = FacesContext.getCurrentInstance();
                             conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Contraseña Incorrecta"));
                         }
-                    }
+                    
+                    }else{
                     conte = FacesContext.getCurrentInstance();
                     conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No Existe el Usuario"));
+                } 
                 }
-            } else {
+            }else {
                 conte = FacesContext.getCurrentInstance();
                 conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Campos Vacios"));
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("ERROR AL ENTRAR:" + e);
         }
     }
