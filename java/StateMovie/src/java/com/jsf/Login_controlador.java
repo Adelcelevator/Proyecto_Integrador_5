@@ -11,10 +11,9 @@ import com.modelo.mod_usuario;
 import com.objetos.ob_cliente;
 import com.objetos.ob_emp_us;
 import com.objetos.ob_usuario;
-import java.io.IOException;
+import com.vari.Variables;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Optional;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,12 +26,14 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "login")
 @SessionScoped
 public class Login_controlador implements Serializable {
-    
+
+    private Variables vari = new Variables();
     private final mod_emp_us memple = new mod_emp_us();
     private final mod_usuario usu = new mod_usuario();
     private ob_usuario us;
     private ob_emp_us emp;
-    
+    mod_cliente clie = new mod_cliente();
+    ob_cliente ncliente = new ob_cliente();
     FacesContext conte;
     String ci, nom, ape, dire, tele, corr, logusuario, logcontra, nusuario, ncontra, nconf;
     boolean rende = false;
@@ -41,14 +42,16 @@ public class Login_controlador implements Serializable {
 
     public Login_controlador() {
     }
-public void prueba_de_reg(){
-    try{
-    conte = FacesContext.getCurrentInstance();
-    conte.getExternalContext().redirect("Protegidos/Administracion/Administrativo.xhtml");
-    }catch(Exception e){
-        System.out.println("ERROR AL REDIRIGIR: "+e);
+
+    public void prueba_de_reg() {
+        try {
+            conte = FacesContext.getCurrentInstance();
+            conte.getExternalContext().redirect("Protegidos/Administracion/Administrativo.xhtml");
+        } catch (Exception e) {
+            System.out.println("ERROR AL REDIRIGIR: " + e);
+        }
     }
-}
+
     public void entrar() {
         try {
             if (!"".equals(logusuario) && !"".equals(logcontra)) {
@@ -64,22 +67,22 @@ public void prueba_de_reg(){
                     }
                 } else {
                     emp = memple.ver(logusuario);
-                    if(emp.getUsu_id() != 0 && emp.getEmp_id() != 0){
-                        if(emp.getEmp_us_contra().equals(logcontra)){
+                    if (emp.getUsu_id() != 0 && emp.getEmp_id() != 0) {
+                        if (emp.getEmp_us_contra().equals(logcontra)) {
                             conte = FacesContext.getCurrentInstance();
                             conte.getExternalContext().getSessionMap().put("empleado", emp);
                             conte.getExternalContext().redirect("Protegidos/Administracion/Administrativo.xhtml");
-                        }else{
+                        } else {
                             conte = FacesContext.getCurrentInstance();
                             conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Contraseña Incorrecta"));
                         }
-                    
-                    }else{
-                    conte = FacesContext.getCurrentInstance();
-                    conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No Existe el Usuario"));
-                } 
+
+                    } else {
+                        conte = FacesContext.getCurrentInstance();
+                        conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "No Existe el Usuario"));
+                    }
                 }
-            }else {
+            } else {
                 conte = FacesContext.getCurrentInstance();
                 conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Campos Vacios"));
             }
@@ -91,25 +94,40 @@ public void prueba_de_reg(){
     public void registrar() {
         try {
             us = usu.entrar(nusuario);
-            if (us.getUsu_id() != 0) {
+            ncliente = clie.ver(ci);
+            if (us.getUsu_id() != 0 && ncliente.getCli_id() != 0) {
                 conte = FacesContext.getCurrentInstance();
-                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Usuario ya registrado"));
+                conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Usuario y Cliente ya registrado"));
             } else {
                 if (ape.equals("") && corr.equals("") && dire.equals("") && nom.equals("") && ci.equals("") && tele.equals("")) {
                     conte = FacesContext.getCurrentInstance();
                     conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Campos Vacios"));
-                }else{
-                    mod_cliente clie = new mod_cliente();
+                } else {
                     ob_cliente nuevo = new ob_cliente();
                     nuevo.setCli_ape(ape);
                     nuevo.setCli_corr(corr);
                     nuevo.setCli_dire(dire);
-                    nuevo.setCli_fnaci(fenaci.toString());
+                    nuevo.setCli_fnaci(vari.converFech(fenaci).replace("/", "%2F"));
                     nuevo.setCli_nom(nom);
                     nuevo.setCli_ruc(ci);
                     nuevo.setCli_tel(tele);
-                    clie.registrar(nuevo);
-                    
+                    if (clie.registrar(nuevo)) {
+                        ncliente = clie.ver(ci);
+                        us.setUsu_id(0);
+                        us.setCli_id(ncliente.getCli_id());
+                        us.setUsu_pass(ncontra);
+                        us.setUsu_usu(nusuario);
+                        if (usu.registrar(us)) {
+                            conte = FacesContext.getCurrentInstance();
+                            conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO", "Usuario Registrado con Exito"));
+                        } else {
+                            conte = FacesContext.getCurrentInstance();
+                            conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "INFO", "Error al Registrar el Usuario"));
+                        }
+                    } else {
+                        conte = FacesContext.getCurrentInstance();
+                        conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO", "Error al registrar el cliente"));
+                    }
                 }
             }
         } catch (Exception e) {

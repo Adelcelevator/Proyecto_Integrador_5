@@ -20,11 +20,17 @@ namespace core_1.Controllers
             return liscli;
         }
         // metodo de ingreso
-        
+
+            [HttpGet]
+            public IHttpActionResult obtener(string ruc)
+        {
+            obs=cn_clie.buscar_cliente(ruc);
+            return Ok(obs);
+        }
 
         //insertar
         [HttpPost]
-        public IHttpActionResult Post(string ruc, string nom, string ape, string dire, int tel, string corr, string fnaci)
+        public IHttpActionResult Post(string ruc, string nom, string ape, string dire, string tel, string corr, string fnaci)
         {
             cn_clie.nuevo_cliente(ruc, nom, ape, dire, tel, corr, fnaci);
             return Ok();
@@ -33,9 +39,9 @@ namespace core_1.Controllers
 
         //actualizar
         [HttpPut]
-        public IHttpActionResult Put(int id, string ruc, string nom, string ape, string dire, int tel, string corr, string fnaci,string est)
+        public IHttpActionResult Put(int id, string ruc, string nom, string ape, string dire, int tel, string corr, string fnaci, string est)
         {
-            cn_clie.actualizar_cliente(id, ruc, nom, ape, dire, tel, corr, fnaci,est);
+            cn_clie.actualizar_cliente(id, ruc, nom, ape, dire, tel, corr, fnaci, est);
             return Ok();
         }
 

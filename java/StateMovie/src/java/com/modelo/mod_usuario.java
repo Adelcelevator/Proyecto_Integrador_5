@@ -109,18 +109,21 @@ public class mod_usuario implements Serializable {
     public boolean registrar(ob_usuario usua) {
         try {
             String urlweb = "http://" + var.getIp() + var.getPuertp() + "/api/Usuario?clid=" + usua.getCli_id()+"&usu="+usua.getUsu_usu()+"&contra="+usua.getUsu_pass();
-            //System.out.println("STRING DE CONEXION: "+urlweb);
+            System.out.println("STRING DE CONEXION: "+urlweb);
             URL url = new URL(urlweb);
             HttpURLConnection conec = (HttpURLConnection) url.openConnection();
             conec.setRequestMethod("POST");
-            conec.setRequestProperty("ACCEPT", "application/json");
+            conec.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            conec.setFixedLengthStreamingMode(0);
+            conec.setDoOutput(true);
             if (conec.getResponseCode() == 200) {
                 return true;
-            }else{
+            }else if(conec.getResponseCode() == 404){
              return false;   
             }
+            return false;
         } catch (Exception e) {
-            System.out.println("ERROR AL REGISTRAR: " + e);
+            System.out.println("ERROR AL REGISTRAR USUARIO: " + e);
             return false;
         }
     }

@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html [<!ENTITY nbsp "&#160;">]>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <link rel="stylesheet" href="../../resources/css/estilosgene.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,7 +16,25 @@ and open the template in the editor.
     <h:body class="cuerpo">
         <ui:composition template="../../templates/template_admin.xhtml">
             <ui:define name="bodys">
-                <h5 class="card-header">Empleados de  <h:outputText value="j"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:commandButton class="btn btn-primary" value="Nuevo" type="button" onclick="PF('nuevo').show();"/>&nbsp;<h:commandButton class="btn btn-primary" value="Editar" type="button" onclick="PF('editar').show();"/>&nbsp;<h:commandButton class="btn btn-danger" value="Eliminar" type="button" onclick="PF('eliminar').show();"/></h5>
+                <p:messages id="messages" showDetail="true" closable="true"/>
+                <h5 class="card-header">Casas de Cine Registradas:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:commandButton class="btn btn-primary" value="Nuevo" type="button" onclick="PF('nuevo').show();"/>&nbsp;<h:commandButton class="btn btn-primary" value="Editar" type="button" onclick="PF('editar').show();"/>&nbsp;<h:commandButton class="btn btn-danger" value="Eliminar" type="button" onclick="PF('eliminar').show();"/></h5>
+                <p:dataTable var="ob_cine" editable="true" value="#{adminip1.todos()}">
+                    <p:column headerText="ID Cine">
+                        <h:outputText value="#{ob_cine.cin_id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre Cine">
+                        <h:outputText value="#{ob_cine.cin_nom}"/>
+                    </p:column>
+                    <p:column headerText="Estado Cine">
+                        <h:outputText value="#{ob_cine.cin_est}"/>
+                    </p:column>
+                </p:dataTable>
+                <p:dialog widgetVar="nuevo" closeOnEscape="true" resizable="false" modal="true" closable="false" header="Nuevo Cine"> 
+                    <h:form>
+                        <h:outputLabel value="Nombre de la Nueva Casa de Cine: "/>&nbsp;<h:inputText value="#{adminip1.nueva}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br/>
+                        <h:commandButton class="btn btn-primary" action="#{adminip1.nuevaCasa()}" value="Guardar"/>
+                    </h:form>
+                </p:dialog>
             </ui:define>    
         </ui:composition>
     </h:body>

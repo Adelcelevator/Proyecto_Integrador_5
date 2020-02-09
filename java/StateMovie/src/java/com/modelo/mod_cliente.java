@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -28,18 +27,23 @@ public class mod_cliente implements Serializable {
 
     public boolean registrar(ob_cliente nuevo) {
         try {
-            String werl = "http://" + vars.getIp() + vars.getPuertp() + "/api/Cliente?ruc=" + nuevo.getCli_ruc() + "&nom=" + nuevo.getCli_nom() + "&ape=" + nuevo.getCli_ape() + "&dire=" + nuevo.getCli_dire() + "&tel=" + nuevo.getCli_tel() + "&corr=" + nuevo.getCli_corr() + "&fnaci=" + nuevo.getCli_fnaci() + "&est=activo";
-            System.out.println("SALIDA DEL NUEOV CLI: " + werl);
+            String werl = "http://" + vars.getIp() + vars.getPuertp() + "/api/Cliente?ruc=" + nuevo.getCli_ruc() + "&nom=" + nuevo.getCli_nom() + "&ape=" + nuevo.getCli_ape() + "&dire=" + nuevo.getCli_dire() + "&tel=" + nuevo.getCli_tel() + "&corr=" + nuevo.getCli_corr() + "&fnaci=" + nuevo.getCli_fnaci();
             URL url = new URL(werl);
             HttpURLConnection conex = (HttpURLConnection) url.openConnection();
             conex.setRequestMethod("POST");
-            conex.setRequestProperty("ACCEPT", "application/json");
+            conex.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            conex.setFixedLengthStreamingMode(0);
+            conex.setDoOutput(true);
             if (conex.getResponseCode() == 200) {
+                System.out.println("ERROR: " + conex.getResponseMessage());
                 return true;
-            } else {
+            } else if (conex.getResponseCode() == 404) {
+                System.out.println("ERROR: " + conex.getResponseMessage());
                 return false;
             }
-        } catch (IOException e) {
+            System.out.println("ERROR: " + conex.getResponseMessage());
+            return false;
+        } catch (Exception e) {
             System.out.println("ERROR AL REGISTRAR EN EL MOD: " + e);
             return false;
         }
@@ -56,24 +60,23 @@ public class mod_cliente implements Serializable {
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String output;
                 while ((output = br.readLine()) != null) {
-                    System.out.println(output);
-                    JSONArray json = new JSONArray(output);
-                    System.out.println("TAMA: " + json.length());
-                    for (int i = 0; i < json.length(); i++) {
-                        ob_usuario usua = new ob_usuario();
-                        JSONObject jsn = json.getJSONObject(i);
-                        usua.setUsu_id(jsn.getInt("usu_id"));
-                        usua.setCli_id(jsn.getInt("cli_id"));
-                        usua.setTus_id(jsn.getInt("tus_id"));
-                        usua.setUsu_usu(jsn.getString("usu_usu"));
-                        usua.setUsu_pass(jsn.getString("usu_pass"));
-                    }
-                    return clie;
+                    JSONObject jsn = new JSONObject(output);
+                        ob_cliente cli = new ob_cliente();
+                        cli.setCli_id(jsn.getInt("cli_id"));
+                        cli.setCli_ruc(jsn.getString("cli_ruc"));
+                        cli.setCli_nom(jsn.getString("cli_nom"));
+                        cli.setCli_ape(jsn.getString("cli_ape"));
+                        cli.setCli_dire(jsn.getString("cli_dire"));
+                        cli.setCli_tel(jsn.getString("cli_tel"));
+                        cli.setCli_corr(jsn.getString("cli_corr"));
+                        cli.setCli_fnaci(jsn.getString("cli_fnaci"));
+                        cli.setCli_est(jsn.getString("cli_est"));
+                    return cli;
                 }
                 con.disconnect();
             }
             return clie;
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("ERROR AL TRAER EN EL MOD: " + e);
             return clie;
         }

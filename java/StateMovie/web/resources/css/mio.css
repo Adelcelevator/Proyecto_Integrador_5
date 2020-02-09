@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11/01/2020, 11:02:33
+    Author     : Panchito
+*/
+
+
+.link{
+ text-decoration: none;   
+}
+
+
+.mensajesmios{
+    color: black !important;
+    background-color: #dc3545 !important;
+}

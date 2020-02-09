@@ -87,6 +87,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CineController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\EmpleadoUsController.cs" />
     <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\GpeliController.cs" />
     <Compile Include="Controllers\HorarioController.cs" />
@@ -104,10 +106,66 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\capa_datos\cd_cine.cs" />
+    <Compile Include="Models\capa_datos\cd_cliente.cs" />
+    <Compile Include="Models\capa_datos\cd_conexion.cs" />
+    <Compile Include="Models\capa_datos\cd_empleado.cs" />
+    <Compile Include="Models\capa_datos\cd_emp_usu.cs" />
+    <Compile Include="Models\capa_datos\cd_genero.cs" />
+    <Compile Include="Models\capa_datos\cd_gpeli.cs" />
+    <Compile Include="Models\capa_datos\cd_horario.cs" />
+    <Compile Include="Models\capa_datos\cd_hpeli.cs" />
+    <Compile Include="Models\capa_datos\cd_pelicula.cs" />
+    <Compile Include="Models\capa_datos\cd_sala.cs" />
+    <Compile Include="Models\capa_datos\cd_ssucursal.cs" />
+    <Compile Include="Models\capa_datos\cd_starifa.cs" />
+    <Compile Include="Models\capa_datos\cd_sucursal.cs" />
+    <Compile Include="Models\capa_datos\cd_tarifa.cs" />
+    <Compile Include="Models\capa_datos\cd_tiket.cs" />
+    <Compile Include="Models\capa_datos\cd_tipo_usuario.cs" />
+    <Compile Include="Models\capa_datos\cd_tpago.cs" />
+    <Compile Include="Models\capa_datos\cd_usuario.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_cine.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_cliente.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_empleado.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_genero.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_gpeli.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_horario.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_hpeli.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_pelicula.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_sala.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_ssucursal.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_starifa.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_sucursal.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_tarifa.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_tiket.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_tipo.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_tpago.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_usuario.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_emp_usu.cs" />
+    <Compile Include="Models\capa_negocio\cn_cine.cs" />
+    <Compile Include="Models\capa_negocio\cn_cliente.cs" />
+    <Compile Include="Models\capa_negocio\cn_empleado.cs" />
+    <Compile Include="Models\capa_negocio\cn_emp_usu.cs" />
+    <Compile Include="Models\capa_negocio\cn_genero.cs" />
+    <Compile Include="Models\capa_negocio\cn_gpeli.cs" />
+    <Compile Include="Models\capa_negocio\cn_horario.cs" />
+    <Compile Include="Models\capa_negocio\cn_hpeli.cs" />
+    <Compile Include="Models\capa_negocio\cn_pelicula.cs" />
+    <Compile Include="Models\capa_negocio\cn_sala.cs" />
+    <Compile Include="Models\capa_negocio\cn_ssucursal.cs" />
+    <Compile Include="Models\capa_negocio\cn_starifa.cs" />
+    <Compile Include="Models\capa_negocio\cn_sucursal.cs" />
+    <Compile Include="Models\capa_negocio\cn_tarifa.cs" />
+    <Compile Include="Models\capa_negocio\cn_tiket.cs" />
+    <Compile Include="Models\capa_negocio\cn_tipo_usuario.cs" />
+    <Compile Include="Models\capa_negocio\cn_tpago.cs" />
+    <Compile Include="Models\capa_negocio\cn_usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -117,17 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\capa_datos\capa_datos.csproj">
-      <Project>{A6CAC840-CE15-4D77-B512-1FB5A841130A}</Project>
-      <Name>capa_datos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\capa_negocio\capa_negocio.csproj">
-      <Project>{dc70eb8b-5253-4bdc-9a38-9bfdb1ffc845}</Project>
-      <Name>capa_negocio</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

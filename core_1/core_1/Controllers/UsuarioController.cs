@@ -24,46 +24,48 @@ namespace core_1.Controllers
         {
             try
             {
-            obs = cn_usu.buscarxusu(usu_id);
-            ob_usuario[] lisus2 = new ob_usuario[] {
+                obs = cn_usu.buscarxusu(usu_id);
+                ob_usuario[] lisus2 = new ob_usuario[] {
 
                     new ob_usuario{usu_id=obs.usu_id,cli_id=obs.cli_id,tus_id=obs.tus_id,usu_usu=obs.usu_usu,usu_pass=obs.usu_pass}
 
                 };
-            return Ok(lisus2);
-        }
-        catch (Exception)
-        {
-          HttpResponseMessage mensaje = new HttpResponseMessage();
+                return Ok(lisus2);
+            }
+            catch (Exception)
+            {
+                HttpResponseMessage mensaje = new HttpResponseMessage();
                 return NotFound();
+            }
+
         }
 
-    }
+
+        //insertar
+        [HttpPost]
+        public IHttpActionResult Post(int clid, string usu, string contra)
+        {
+            cn_usu.nuevo_usuario(clid, usu, contra);
+            return Ok();
+        }
 
 
-    //insertar
-    [HttpPost]
-    public void Post(int clid, string usu, string contra)
-    {
-        cn_usu.nuevo_usuario(clid, usu, contra);
-    }
+        //actualizar
+        [HttpPut]
+        public IHttpActionResult Put(int id, int cli_id, int tus_id, string usu_usu, string usu_pass)
+        {
+            cn_usu.actualizar_usuario(id, cli_id, tus_id, usu_usu, usu_pass);
+            return Ok();
+        }
 
 
-    //actualizar
-    [HttpPut]
-    public void Put(int id,int cli_id, int tus_id, string usu_usu, string usu_pass)
-    {
-        cn_usu.actualizar_usuario(id,cli_id, tus_id, usu_usu, usu_pass);
-    }
-
-
-    //eliminar
-    [HttpDelete]
-    public IHttpActionResult DELETE(int id)
-    {
-        cn_usu.eliminar_usuario(id);
+        //eliminar
+        [HttpDelete]
+        public IHttpActionResult DELETE(int id)
+        {
+            cn_usu.eliminar_usuario(id);
             HttpResponseMessage respuesta = new HttpResponseMessage();
             return Ok(respuesta);
+        }
     }
-}
 }
