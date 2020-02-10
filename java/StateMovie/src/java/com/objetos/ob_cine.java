@@ -5,11 +5,13 @@
  */
 package com.objetos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Panchito
  */
-public class ob_cine {
+public class ob_cine implements Serializable{
     private int cin_id;
     private String cin_nom,cin_est;
 

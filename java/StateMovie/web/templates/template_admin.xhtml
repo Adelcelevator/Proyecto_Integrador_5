@@ -2,11 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>Dashboard</title>
-        <link rel="icon" type="image/png" href="/StateMovie/resources/images/icons/favicon.ico"/>
+        <link rel="icon" type="image/png" href="/StateMovie/resources/images/favicon.ico"/>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <!-- Bootstrap CSS -->
@@ -84,77 +85,30 @@
                                         <div id="submenu-1" class="collapse submenu" style="">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Empresas</a>
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Cines</a>
                                                     <div id="submenu-1-2" class="collapse submenu" style="">
                                                         <ul class="nav flex-column">
                                                             <li class="nav-item">
-                                                                <h:commandLink class="nav-link link">Mostrar Empresas</h:commandLink>
+                                                                <h:commandLink class="nav-link link" action="#{redire.redirAd()}">Cines</h:commandLink>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <h:commandLink class="nav-link link">Agregar Empresas</h:commandLink>
+                                                                <h:commandLink class="nav-link link" action="#{redire.redirSuc()}">Sucursales</h:commandLink>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <h:commandLink class="nav-link link">Editar Empresas</h:commandLink>
+                                                                <h:commandLink class="nav-link link" action="#{redire.redirEm()}">Empleados</h:commandLink>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <h:commandLink class="nav-link link">Eliminar Empresas</h:commandLink>
+                                                                <h:commandLink class="nav-link link" action="#{redire.redirHo()}">Horarios</h:commandLink>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <h:commandLink class="nav-link link" action="#{redire.redirPe()}">Peliculas</h:commandLink>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="dashboard-finance.html">Finance</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="dashboard-sales.html">Sales</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
-                                                    <div id="submenu-1-1" class="collapse submenu" style="">
-                                                        <ul class="nav flex-column">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="dashboard-influencer.html">Influencer</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="influencer-finder.html">Influencer Finder</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="influencer-profile.html">Influencer Profile</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
+                                                </li>                             
                                             </ul>
                                         </div>
-                                    </li>                               
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
-                                        <div id="submenu-2" class="collapse submenu" style="">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="pages/general.html">General</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="pages/carousel.html">Carousel</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="pages/listgroup.html">List Group</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="pages/typography.html">Typography</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="pages/accordions.html">Accordions</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="pages/tabs.html">Tabs</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>                  
+                                    </li>                                                     
                                 </ul>
                             </div>
                         </nav>
@@ -170,7 +124,9 @@
                                 <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
                                     <div class="card">
                                         <div class="table-responsive">
-                                            <ui:insert name="bodys"></ui:insert>
+                                            <f:ajax>
+                                                <ui:insert name="bodys"></ui:insert>
+                                            </f:ajax>
                                         </div>
                                     </div>
                                 </div>

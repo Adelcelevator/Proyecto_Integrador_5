@@ -51,7 +51,7 @@ public class Index_controlador implements Serializable {
     public void inicio() {
         try {
             conte = FacesContext.getCurrentInstance();
-            conte.getExternalContext().redirect("index.xhtml");
+            conte.getExternalContext().redirect("faces/index.xhtml");
         } catch (IOException e) {
             System.out.println("ERROR AL REDIRIGIR: " + e);
         }
@@ -65,7 +65,7 @@ public class Index_controlador implements Serializable {
             lis = obp.busca(nomp);
             conte.getExternalContext().getSessionMap().put("termi", nomp);
             conte.getExternalContext().getSessionMap().put("lista_peli", lis);
-            conte.getExternalContext().redirect("peliculas.xhtml");
+            conte.getExternalContext().redirect("faces/peliculas.xhtml");
         } catch (IOException e) {
             System.out.println("ERROR AL BUSCAR: " + e);
         }

@@ -5,11 +5,13 @@
  */
 package com.objetos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Panchito
  */
-public class ob_cliente {
+public class ob_cliente implements Serializable{
 
     private int cli_id;
     private String cli_ruc, cli_nom, cli_ape, cli_dire, cli_tel, cli_corr, cli_fnaci, cli_est;
