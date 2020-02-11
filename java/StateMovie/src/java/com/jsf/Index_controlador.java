@@ -65,7 +65,7 @@ public class Index_controlador implements Serializable {
             lis = obp.busca(nomp);
             conte.getExternalContext().getSessionMap().put("termi", nomp);
             conte.getExternalContext().getSessionMap().put("lista_peli", lis);
-            conte.getExternalContext().redirect("faces/peliculas.xhtml");
+            conte.getExternalContext().redirect("peliculas.xhtml");
         } catch (IOException e) {
             System.out.println("ERROR AL BUSCAR: " + e);
         }

@@ -16,7 +16,7 @@ public class ob_emp_us implements Serializable{
     private int usu_id, emp_id, tip_emp, cin_id;
     private String emp_usu, emp_us_contra, usu_emp_est;
 
-    public int getUsu_id() {
+    public int getUsu_id(){
         return usu_id;
     }
 

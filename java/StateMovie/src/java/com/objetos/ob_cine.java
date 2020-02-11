@@ -18,7 +18,7 @@ public class ob_cine implements Serializable{
     public ob_cine() {
     }
 
-    public int getCin_id() {
+    public int getCin_id(){
         return cin_id;
     }
 

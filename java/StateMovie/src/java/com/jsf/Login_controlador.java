@@ -25,7 +25,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "login")
 @SessionScoped
-public class Login_controlador implements Serializable {
+public class Login_controlador implements Serializable{
 
     private Variables vari = new Variables();
     private final mod_emp_us memple = new mod_emp_us();
