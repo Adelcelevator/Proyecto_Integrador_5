@@ -27,11 +27,11 @@ public class mod_cine {
     private List<ob_cine> lista = new ArrayList<>();
     private ob_cine cin = new ob_cine();
     private Variables vari = new Variables();
+    String werl = "http://" + vari.getIp() + vari.getPuertp() + "/api/Cine";
 
     public List<ob_cine> todosc() {
         lista.clear();
         try {
-            String werl = "http://" + vari.getIp() + vari.getPuertp() + "/api/Cine";
             URL url = new URL(werl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
@@ -64,7 +64,8 @@ public class mod_cine {
 
     public boolean nuev(String nom) {
         try {
-            String werl = "http://"+vari.getIp()+vari.getPuertp()+"/api/Cine?nom="+nom;
+            werl = werl+"?nom=" + nom;
+            //System.out.println("SALIDA: "+werl);
             URL url = new URL(werl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
@@ -72,14 +73,14 @@ public class mod_cine {
             con.setFixedLengthStreamingMode(0);
             con.setDoOutput(true);
             if (con.getResponseCode() == 200) {
-                System.out.println("ERROR: " + con.getResponseMessage());
+                //System.out.println("ERROR: " + con.getResponseMessage());
                 return true;
             } else if (con.getResponseCode() == 404) {
-                System.out.println("ERROR: " + con.getResponseMessage());
-                System.out.println("YO QUE SE:" + con.getResponseMessage());
+              //  System.out.println("ERROR: " + con.getResponseMessage());
+               // System.out.println("YO QUE SE:" + con.getResponseMessage());
                 return false;
             }
-            System.out.println("YO QUE SE:" + con.getResponseMessage());
+            //System.out.println("YO QUE SE:" + con.getResponseMessage());
             return false;
         } catch (Exception e) {
             System.out.println("ERROR AL GUARDAR CASA DE CINE: " + e);

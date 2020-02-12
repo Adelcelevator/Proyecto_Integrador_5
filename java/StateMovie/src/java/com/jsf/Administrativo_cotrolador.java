@@ -67,6 +67,7 @@ public class Administrativo_cotrolador implements Serializable {
         try {
             conte = FacesContext.getCurrentInstance();
             conte.getExternalContext().getSessionMap().clear();
+            conte.getExternalContext().invalidateSession();
             conte.getExternalContext().redirect("../../index.xhtml");
         } catch (Exception e) {
             System.out.println("ERROR: " + e);

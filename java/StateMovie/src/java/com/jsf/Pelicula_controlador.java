@@ -30,7 +30,7 @@ public class Pelicula_controlador implements Serializable{
         this.termi = termi;
     }
     
-    public List<ob_pelicula> pelis= new ArrayList<>();
+    public List<ob_pelicula> pelis;
     
     FacesContext conte;
     
