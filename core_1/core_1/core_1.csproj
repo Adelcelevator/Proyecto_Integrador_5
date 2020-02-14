@@ -147,6 +147,7 @@
     <Compile Include="Models\capa_datos\objetos\ob_usuario.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_emp_usu.cs" />
     <Compile Include="Models\capa_negocio\cn_cine.cs" />
+    <Compile Include="Models\capa_negocio\cn_ciudad.cs" />
     <Compile Include="Models\capa_negocio\cn_cliente.cs" />
     <Compile Include="Models\capa_negocio\cn_empleado.cs" />
     <Compile Include="Models\capa_negocio\cn_emp_usu.cs" />
