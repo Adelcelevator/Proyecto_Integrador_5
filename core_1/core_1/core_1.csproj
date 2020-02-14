@@ -107,6 +107,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\capa_datos\cd_cine.cs" />
+    <Compile Include="Models\capa_datos\cd_ciudad.cs" />
     <Compile Include="Models\capa_datos\cd_cliente.cs" />
     <Compile Include="Models\capa_datos\cd_conexion.cs" />
     <Compile Include="Models\capa_datos\cd_empleado.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Models\capa_datos\cd_tpago.cs" />
     <Compile Include="Models\capa_datos\cd_usuario.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_cine.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_ciudad.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_cliente.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_empleado.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_genero.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="Models\capa_datos\objetos\ob_hpeli.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_pelicula.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_sala.cs" />
+    <Compile Include="Models\capa_datos\objetos\ob_sector.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_ssucursal.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_starifa.cs" />
     <Compile Include="Models\capa_datos\objetos\ob_sucursal.cs" />
