@@ -11,7 +11,6 @@ namespace core_1.Models.capa_datos
     {
         cd_conexion conexion = new cd_conexion();
         ob_emp_usu emple = new ob_emp_usu();
-        List<ob_emp_usu> lista;
         SqlCommand comando = new SqlCommand();
         SqlDataReader leer;
         DataTable tabla = new DataTable();
