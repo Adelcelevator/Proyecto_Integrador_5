@@ -30,34 +30,34 @@ and open the template in the editor.
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Nombre de la Sucursal: "/></td>
-                            <td><h:inputText/></td>  
+                            <td><h:inputText value="#{sucursal.nnsuc}"/></td>  
                         </tr>
                         <tr>
                             <td><h:outputLabel value="RUC de la Sucursal: "/></td>
-                            <td><h:inputText/></td>           
+                            <td><h:inputText value="#{sucursal.nrucsuc}"/></td>           
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Dirección de la Sucursal: "/></td><td>
-                                <h:inputText/></td>
+                                <h:inputText value="#{sucursal.nsucdir}"/></td>
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Telefono de la Sucursal: "/></td>
-                            <td><h:inputText/></td>
+                            <td><h:inputText value="#{sucursal.nsuctel}"/></td>
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Correo de la Sucursal: "/></td>
-                            <td><h:inputText/></td>
+                            <td><h:inputText value="#{sucursal.ncorr}"/></td>
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Ciudad en donde esta la Sucursal: "/></td>
-                            <td><h:inputText/></td>
+                            <td><h:selectOneMenu value="#{sucursal.nsuci}"><f:selectItems var="ob_cine" value="#{sucursal.todos()}"><f:selectItem itemLabel="Escoja Una" value="#{sucursal.nsuci}"/></f:selectItems></h:selectOneMenu></td>
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Sector en donde esta la Sucursal: "/></td>
-                            <td><h:inputText/></td>
+                            <td><h:selectOneMenu value="#{sucursal.nsuci}"><f:selectItems var="ob_cine" value="#{sucursal.todos()}"><f:selectItem itemLabel="Escoja Una" value="#{sucursal.nsuci}"/></f:selectItems></h:selectOneMenu></td>
                         </tr>
                         <tr>
-                            <td><h:commandButton class="btn btn-primary" value="Guardar"/></td>
+                            <td><h:commandButton class="btn btn-primary" value="Guardar" action="#{sucursal.guardar()}" /></td>
                         </tr>
                         <tr>
                             <td><h:commandButton class="btn btn-danger" onclick="PF('nuevaS').hide()" value="Cancelar"/></td>

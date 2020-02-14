@@ -38,7 +38,7 @@ public class Administrativo_cotrolador implements Serializable {
     }
 
     public String usua() {
-        String dsa = "";
+        String dsa = "5";
         try {
             conte = FacesContext.getCurrentInstance();
             emp_us = (ob_emp_us) conte.getExternalContext().getSessionMap().get("empleado");
@@ -55,7 +55,7 @@ public class Administrativo_cotrolador implements Serializable {
             conte = FacesContext.getCurrentInstance();
             conte.getExternalContext().redirect("../../index.xhtml");
             System.out.println("ERROR: " + e);
-            }catch(IOException ex){
+            }catch(Exception ex){
                 System.out.println("JAJAJAJAJA: "+ex);
             }
             return dsa;

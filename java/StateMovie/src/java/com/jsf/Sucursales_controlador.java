@@ -22,8 +22,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "sucursal")
 @SessionScoped
 public class Sucursales_controlador implements Serializable {
-
-    String nsuci;
+    private String nsuci,nnsuc,nrucsuc,ntelsuc,ncorr,nsucdir,nsuctel;
     List<ob_sucursal> lis = new ArrayList<ob_sucursal>();
     mod_sucursal ms = new mod_sucursal();
 
@@ -39,12 +38,60 @@ public class Sucursales_controlador implements Serializable {
         }
     }
 
+    public String getNsuctel() {
+        return nsuctel;
+    }
+
+    public void setNsuctel(String nsuctel) {
+        this.nsuctel = nsuctel;
+    }
+
+    public String getNsucdir() {
+        return nsucdir;
+    }
+
+    public void setNsucdir(String nsucdir) {
+        this.nsucdir = nsucdir;
+    }
+
     public String getNsuci() {
         return nsuci;
     }
 
     public void setNsuci(String nsuci) {
         this.nsuci = nsuci;
+    }
+
+    public String getNnsuc() {
+        return nnsuc;
+    }
+
+    public void setNnsuc(String nnsuc) {
+        this.nnsuc = nnsuc;
+    }
+
+    public String getNrucsuc() {
+        return nrucsuc;
+    }
+
+    public void setNrucsuc(String nrucsuc) {
+        this.nrucsuc = nrucsuc;
+    }
+
+    public String getNtelsuc() {
+        return ntelsuc;
+    }
+
+    public void setNtelsuc(String ntelsuc) {
+        this.ntelsuc = ntelsuc;
+    }
+
+    public String getNcorr() {
+        return ncorr;
+    }
+
+    public void setNcorr(String ncorr) {
+        this.ncorr = ncorr;
     }
 
     public List<String> todos() {
@@ -67,5 +114,8 @@ public class Sucursales_controlador implements Serializable {
             nomC.clear();
             return nomC;
         }
+    }
+    public void guardar(){
+        System.out.println("SALIDA DE TODO: "+nsuci);
     }
 }
