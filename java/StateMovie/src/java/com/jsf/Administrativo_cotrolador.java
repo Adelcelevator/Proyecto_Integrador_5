@@ -8,7 +8,6 @@ package com.jsf;
 import com.modelo.mod_cine;
 import com.objetos.ob_cine;
 import com.objetos.ob_emp_us;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,6 @@ import javax.faces.context.FacesContext;
 public class Administrativo_cotrolador implements Serializable {
 
     private String nueva;
-    private ob_cine cine = new ob_cine();
     private mod_cine mci = new mod_cine();
     private ob_emp_us emp_us = new ob_emp_us();
     private List<ob_cine> lis = new ArrayList<>();
@@ -44,7 +42,6 @@ public class Administrativo_cotrolador implements Serializable {
             emp_us = (ob_emp_us) conte.getExternalContext().getSessionMap().get("empleado");
             if (emp_us != null) {
                 dsa = emp_us.getEmp_usu();
-                System.out.println("SALIDA DEL OTRO LADO: " + dsa);
                 return dsa;
             } else {
                 conte = FacesContext.getCurrentInstance();

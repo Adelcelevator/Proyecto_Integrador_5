@@ -54,7 +54,7 @@ and open the template in the editor.
                         </tr>
                         <tr>
                             <td><h:outputLabel value="Sector en donde esta la Sucursal: "/></td>
-                            <td><h:selectOneMenu value="#{sucursal.nsuci}"><f:selectItems var="ob_cine" value="#{sucursal.todos()}"><f:selectItem itemLabel="Escoja Una" value="#{sucursal.nsuci}"/></f:selectItems></h:selectOneMenu></td>
+                            <td><h:selectOneMenu value="#{sucursal.nsucsec}"><f:selectItems var="ob_cine" value="#{sucursal.todsec()}"><f:selectItem itemLabel="Escoja Una" value="#{sucursal.nsucsec}"/></f:selectItems></h:selectOneMenu></td>
                         </tr>
                         <tr>
                             <td><h:commandButton class="btn btn-primary" value="Guardar" action="#{sucursal.guardar()}" /></td>
