@@ -6,8 +6,10 @@
 package com.jsf;
 
 import com.modelo.mod_cine;
+import com.modelo.mod_ciudad;
 import com.modelo.mod_sucursal;
 import com.objetos.ob_cine;
+import com.objetos.ob_ciudad;
 import com.objetos.ob_sucursal;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,9 +24,9 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "sucursal")
 @SessionScoped
 public class Sucursales_controlador implements Serializable {
-    private String nsuci,nnsuc,nrucsuc,ntelsuc,ncorr,nsucdir,nsuctel;
-    List<ob_sucursal> lis = new ArrayList<ob_sucursal>();
-    mod_sucursal ms = new mod_sucursal();
+    private String nsuci,nnsuc,nrucsuc,ntelsuc,ncorr,nsucdir,nsuctel,nsucci;
+    private List<ob_sucursal> lis = new ArrayList<ob_sucursal>();
+    private mod_sucursal ms = new mod_sucursal();
 
     public List<ob_sucursal> todo() {
         try {
@@ -115,7 +117,43 @@ public class Sucursales_controlador implements Serializable {
             return nomC;
         }
     }
+    
+    public List<String> todasc() {
+        List<String> lisc = new ArrayList<String>();
+        lisc.clear();
+        try {
+            
+            lisc.clear();
+            mod_ciudad ciu = new mod_ciudad();
+            List<ob_ciudad> lis;
+            lis = ciu.todas();
+            lisc.add("Escoja Una");
+            ob_ciudad ciud= new ob_ciudad();
+            
+            for(int i=0;i<lis.size();i++){
+                ciud = lis.get(i);
+                String nomc = ciud.getCiu_nom();
+                lisc.add(nomc);
+            }
+            return lisc;
+        } catch (Exception e) {
+            System.out.println("ERROR AL CREAR LA LISTA DE CINES: " + e);
+            lisc.clear();
+            return lisc;
+        }
+    }
+    
     public void guardar(){
         System.out.println("SALIDA DE TODO: "+nsuci);
     }
+
+    public String getNsucci() {
+        return nsucci;
+    }
+
+    public void setNsucci(String nsucci) {
+        this.nsucci = nsucci;
+    }
+    
+    
 }

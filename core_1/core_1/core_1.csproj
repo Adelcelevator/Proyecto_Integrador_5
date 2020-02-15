@@ -96,6 +96,7 @@
     <Compile Include="Controllers\HpeliController.cs" />
     <Compile Include="Controllers\PeliculaController.cs" />
     <Compile Include="Controllers\SalaController.cs" />
+    <Compile Include="Controllers\SectorController.cs" />
     <Compile Include="Controllers\SsucursalController.cs" />
     <Compile Include="Controllers\StarifaController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Models\capa_datos\cd_hpeli.cs" />
     <Compile Include="Models\capa_datos\cd_pelicula.cs" />
     <Compile Include="Models\capa_datos\cd_sala.cs" />
+    <Compile Include="Models\capa_datos\cd_sector.cs" />
     <Compile Include="Models\capa_datos\cd_ssucursal.cs" />
     <Compile Include="Models\capa_datos\cd_starifa.cs" />
     <Compile Include="Models\capa_datos\cd_sucursal.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Models\capa_negocio\cn_hpeli.cs" />
     <Compile Include="Models\capa_negocio\cn_pelicula.cs" />
     <Compile Include="Models\capa_negocio\cn_sala.cs" />
+    <Compile Include="Models\capa_negocio\cn_sector.cs" />
     <Compile Include="Models\capa_negocio\cn_ssucursal.cs" />
     <Compile Include="Models\capa_negocio\cn_starifa.cs" />
     <Compile Include="Models\capa_negocio\cn_sucursal.cs" />
