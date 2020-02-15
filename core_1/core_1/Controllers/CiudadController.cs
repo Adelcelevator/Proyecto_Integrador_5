@@ -1,4 +1,6 @@
-﻿using core_1.Models.capa_datos.objetos;
+﻿using capa_datos.objetos;
+using capa_negocio;
+using core_1.Models.capa_datos.objetos;
 using core_1.Models.capa_negocio;
 using System;
 using System.Collections.Generic;
@@ -13,12 +15,20 @@ namespace core_1.Controllers
     {
         List<ob_ciudad> lista = new List<ob_ciudad>();
         cn_ciudad cnci = new cn_ciudad();
+        ob_ciudad obci = new ob_ciudad();
 
         [HttpGet]
-        IEnumerable<ob_ciudad> todas()
+        public IEnumerable<ob_ciudad> todas()
         {
             lista = cnci.tod();
             return lista;
+        }
+
+        [HttpGet]
+        public IHttpActionResult ciudad(string nomciu)
+        {
+            obci = cnci.una(nomciu);
+            return Ok(obci);
         }
     }
 }

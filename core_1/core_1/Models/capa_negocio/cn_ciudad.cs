@@ -20,7 +20,7 @@ namespace core_1.Models.capa_negocio
             DataTable tabla = cdci.todas();
             if (tabla.Rows.Count != 0)
             {
-                foreach(DataRow dr in tabla.Rows)
+                foreach (DataRow dr in tabla.Rows)
                 {
                     ob_ciudad nuevo = new ob_ciudad();
                     nuevo.ciu_id = Convert.ToInt16(dr["ciu_id"].ToString());
@@ -33,6 +33,22 @@ namespace core_1.Models.capa_negocio
             else
             {
                 return lis;
+            }
+        }
+        public ob_ciudad una(string nombre)
+        {
+            DataTable tabla = cdci.ciudad(nombre);
+            if (tabla.Rows.Count != 0)
+            {
+                DataRow dr = tabla.Rows[0];
+                obci.ciu_id = Convert.ToInt16(dr["ciu_id"].ToString());
+                obci.ciu_nom = dr["ciu_nom"].ToString();
+                obci.ciu_est = dr["ciu_est"].ToString();
+                return obci;
+            }
+            else
+            {
+                return obci;
             }
         }
     }
