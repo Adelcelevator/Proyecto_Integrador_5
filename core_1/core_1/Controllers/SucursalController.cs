@@ -26,7 +26,7 @@ namespace core_1.Controllers
                 obsu = cn_suc.buscarxsucursal(suc_id);
                 ob_sucursal[] lisuc2 = new ob_sucursal[] {
 
-                    new ob_sucursal{suc_id=obsu.suc_id,cin_id=obsu.cin_id,suc_nom=obsu.suc_nom,suc_sec=obsu.suc_sec,suc_ruc=obsu.suc_ruc,suc_dir=obsu.suc_dir,suc_tel=obsu.suc_tel,suc_cor=obsu.suc_cor,suc_ciu=obsu.suc_ciu}
+                    new ob_sucursal{suc_id=obsu.suc_id,cin_id=obsu.cin_id,suc_nom=obsu.suc_nom,sec_id=obsu.sec_id,suc_ruc=obsu.suc_ruc,suc_dir=obsu.suc_dir,suc_tel=obsu.suc_tel,suc_cor=obsu.suc_cor,ciu_id=obsu.ciu_id}
 
                 };
                 return Ok(lisuc2);
@@ -42,17 +42,24 @@ namespace core_1.Controllers
 
         //insertar
         [HttpPost]
-        public void Post(int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_ciu)
+        public IHttpActionResult Post(int cin_id, int ciu_id, int sec_id, string suc_nom, string suc_ruc, string suc_dir, string suc_tel, string suc_cor)
         {
-            cn_suc.nuevo_sucursal(cin_id, suc_nom, suc_sec, suc_ruc, suc_dir, suc_tel, suc_cor, suc_ciu);
+            if(cn_suc.nuevo_sucursal(cin_id,ciu_id, sec_id, suc_nom, suc_ruc, suc_dir, suc_tel, suc_cor))
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
 
         //actualizar
         [HttpPut]
-        public void Put(int id, int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_ciu)
+        public void Put(int id, int ciu_id, int sec_id, int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_esta)
         {
-            cn_suc.actualizar_sucursal(id, cin_id, suc_nom, suc_sec, suc_ruc, suc_dir, suc_tel, suc_cor, suc_ciu);
+            cn_suc.actualizar_sucursal(id, ciu_id, sec_id, cin_id, suc_nom, suc_sec, suc_ruc, suc_dir, suc_tel, suc_cor, suc_esta);
         }
 
 

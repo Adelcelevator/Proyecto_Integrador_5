@@ -22,5 +22,12 @@ namespace core_1.Controllers
             lissec = cnsec.tod();
             return lissec;
         }
+
+        [HttpGet]
+        public IHttpActionResult sectors(string secto_nom)
+        {
+            obsec = cnsec.secto(secto_nom);
+            return Ok(obsec);
+        }
     }
 }

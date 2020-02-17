@@ -26,5 +26,20 @@ namespace core_1.Models.capa_datos
             conexion.cerrar_conexion();
             return tabla1;
         }
+
+        public DataTable sector(string nomciu)
+        {
+            DataTable tabla1 = new DataTable();
+            comando.Connection = conexion.abrir_conexion();
+            comando.CommandText = "mostrar_sector_x_sector";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@sector", nomciu);
+            leer = comando.ExecuteReader();
+            tabla1.Load(leer);
+            comando.Parameters.Clear();
+            conexion.cerrar_conexion();
+            return tabla1;
+        }
+
     }
 }

@@ -44,15 +44,15 @@ namespace capa_datos
                 if (tabla.Rows[0] != null)
                 {
                     DataRow suc = tabla.Rows[0];
-                    obsuc.suc_id = Convert.ToInt32(suc["ID Sucursal"].ToString());
-                    obsuc.cin_id = Convert.ToInt32(suc["ID Cine"].ToString());
+                    obsuc.suc_id = Convert.ToInt32(suc["suc_id"].ToString());
+                    obsuc.cin_id = Convert.ToInt32(suc["cin_id"].ToString());
                     obsuc.suc_nom = suc["suc_nom"].ToString();
-                    obsuc.suc_sec = suc["suc_sec"].ToString();
+                    obsuc.sec_id = Convert.ToInt32(suc["sec_id"].ToString());
                     obsuc.suc_ruc = suc["suc_ruc"].ToString();
                     obsuc.suc_dir = suc["suc_dir"].ToString();
-                    obsuc.suc_tel = Convert.ToInt32(suc["suc_tel"].ToString());
+                    obsuc.suc_tel = suc["suc_tel"].ToString();
                     obsuc.suc_cor = suc["suc_cor"].ToString();
-                    obsuc.suc_ciu = suc["suc_ciu"].ToString();
+                    obsuc.ciu_id = Convert.ToInt32(suc["suc_ciu"].ToString());
                     comando.Parameters.Clear();
                     conexion.cerrar_conexion();
                     return obsuc;
@@ -75,17 +75,17 @@ namespace capa_datos
             comando.CommandType = CommandType.StoredProcedure;
             leer = comando.ExecuteReader();
             tabla.Load(leer);
-        
+
             DataRow suc = tabla.Rows[0];
             obsuc.suc_id = Convert.ToInt32(suc["ID Sucursal"].ToString());
             obsuc.cin_id = Convert.ToInt32(suc["ID Cine"].ToString());
             obsuc.suc_nom = suc["suc_nom"].ToString();
-            obsuc.suc_sec = suc["suc_sec"].ToString();
+            obsuc.sec_id = Convert.ToInt32(suc["sec_id"].ToString());
             obsuc.suc_ruc = suc["suc_ruc"].ToString();
             obsuc.suc_dir = suc["suc_dir"].ToString();
-            obsuc.suc_tel = Convert.ToInt32(suc["suc_tel"].ToString());
+            obsuc.suc_tel = suc["suc_tel"].ToString();
             obsuc.suc_cor = suc["suc_cor"].ToString();
-            obsuc.suc_ciu = suc["suc_ciu"].ToString();
+            obsuc.ciu_id = Convert.ToInt32(suc["suc_ciu"].ToString());
 
             conexion.cerrar_conexion();
             return obsuc;
@@ -102,7 +102,7 @@ namespace capa_datos
             conexion.cerrar_conexion();
         }
 
-        public void actualizar_sucursal(int id, int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_ciu)
+        public void actualizar_sucursal(int id,int ciu_id,int sec_id, int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor,string suc_esta)
         {
             comando.Connection = conexion.abrir_conexion();
             comando.CommandText = "crear_editar_sucursal";
@@ -115,32 +115,40 @@ namespace capa_datos
             comando.Parameters.AddWithValue("@suc_dir", suc_dir);
             comando.Parameters.AddWithValue("@suc_tel", suc_tel);
             comando.Parameters.AddWithValue("@suc_cor", suc_cor);
-            comando.Parameters.AddWithValue("@suc_ciu", suc_ciu);
-            comando.Parameters.AddWithValue("@estado", "a");
+            comando.Parameters.AddWithValue("@ciu_id", ciu_id);
+            comando.Parameters.AddWithValue("@sec_id", sec_id);
+            comando.Parameters.AddWithValue("@suc_esta", suc_esta);
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();
             conexion.cerrar_conexion();
         }
 
-        public void nuevo_sucursal(int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_ciu)
+        public bool nuevo_sucursal(int cin_id, int ciu_id, int sec_id, string suc_nom, string suc_ruc, string suc_dir,string suc_tel, string suc_cor)
         {
-            comando.Connection = conexion.abrir_conexion();
-            comando.CommandText = "crear_editar_sucursal";
-            comando.CommandType = CommandType.StoredProcedure;
-
-            comando.Parameters.AddWithValue("suc_id", 0);
-            comando.Parameters.AddWithValue("@cin_id", 1);
-            comando.Parameters.AddWithValue("@suc_nom", suc_nom);
-            comando.Parameters.AddWithValue("@suc_sec", suc_sec);
-            comando.Parameters.AddWithValue("@suc_ruc", suc_ruc);
-            comando.Parameters.AddWithValue("@suc_dir", suc_dir);
-            comando.Parameters.AddWithValue("@suc_tel", suc_tel);
-            comando.Parameters.AddWithValue("@suc_cor", suc_cor);
-            comando.Parameters.AddWithValue("@suc_ciu", suc_ciu);
-            comando.Parameters.AddWithValue("@estado", "a");
-            comando.ExecuteNonQuery();
-            comando.Parameters.Clear();
-            conexion.cerrar_conexion();
+            try
+            {
+                comando.Connection = conexion.abrir_conexion();
+                comando.CommandText = "crear_editar_sucursal";
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@suc_id", 0);
+                comando.Parameters.AddWithValue("@ciu_id", ciu_id);
+                comando.Parameters.AddWithValue("@sec_id", sec_id);
+                comando.Parameters.AddWithValue("@cin_id", cin_id);
+                comando.Parameters.AddWithValue("@suc_nom", suc_nom);
+                comando.Parameters.AddWithValue("@suc_ruc", suc_ruc);
+                comando.Parameters.AddWithValue("@suc_dir", suc_dir);
+                comando.Parameters.AddWithValue("@suc_tel", suc_tel);
+                comando.Parameters.AddWithValue("@suc_cor", suc_cor);
+                comando.Parameters.AddWithValue("@suc_esta", "activo");
+                comando.ExecuteNonQuery();
+                comando.Parameters.Clear();
+                conexion.cerrar_conexion();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

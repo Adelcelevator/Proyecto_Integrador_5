@@ -20,7 +20,7 @@ and open the template in the editor.
                 <p:messages id="messages" showDetail="true" closable="true"/>
                 <h5 class="card-header">Sucursales Registradas:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:commandButton class="btn btn-primary" value="Nuevo" type="button" onclick="PF('nuevaS').show();"/>&nbsp;<h:commandButton class="btn btn-primary" value="Editar" type="button" onclick="PF('editar').show();"/>&nbsp;<h:commandButton class="btn btn-danger" value="Eliminar" type="button" onclick="PF('eliminar').show();"/></h5>
                 <p:dataTable var="ob_sucursal" value="#{sucursal.todo()}">
-
+                    <p:column><h:outputLabel value="#{ob_sucursal.suc_nom}"/></p:column>
                 </p:dataTable>
                 <p:dialog widgetVar="nuevaS" closable="false" closeOnEscape="true" resizable="false" modal="true">
                     <table>

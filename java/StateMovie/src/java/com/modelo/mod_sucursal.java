@@ -66,4 +66,34 @@ public class mod_sucursal implements Serializable{
             return liss;
         }
     }
+    
+    
+
+    public boolean guardar(ob_sucursal bosuc){
+        try{
+           //aqui adentro
+           wsr = wsr+"?cin_id="+bosuc.getCin_id()+"&ciu_id="+bosuc.getCiu_id()+"&sec_id="+bosuc.getSec_id()+"&suc_nom="+bosuc.getSuc_nom()+"&suc_ruc="+bosuc.getSuc_ruc()+"&suc_dir="+bosuc.getSuc_dir()+"&suc_tel="+bosuc.getSuc_tel()+"&suc_cor="+bosuc.getSuc_cor();
+            //System.out.println("SALIDA: "+werl);
+            URL url = new URL(wsr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            con.setFixedLengthStreamingMode(0);
+            con.setDoOutput(true);
+            if (con.getResponseCode() == 200) {
+                //System.out.println("ERROR: " + con.getResponseMessage());
+                return true;
+            } else if (con.getResponseCode() == 404) {
+              //  System.out.println("ERROR: " + con.getResponseMessage());
+               // System.out.println("YO QUE SE:" + con.getResponseMessage());
+                return false;
+            }
+            //System.out.println("YO QUE SE:" + con.getResponseMessage());
+            return false;           
+        }catch(Exception e){
+            System.out.println("ERROR AL GUARDAR LA SUCURSAL: "+e);
+        }
+        
+        return  false;
+    }
 }

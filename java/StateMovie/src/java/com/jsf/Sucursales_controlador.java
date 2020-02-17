@@ -30,7 +30,7 @@ public class Sucursales_controlador implements Serializable {
     private String nsuci, nnsuc, nrucsuc, ntelsuc, ncorr, nsucdir, nsuctel, nsucci,nsucsec;
     private List<ob_sucursal> lis = new ArrayList<>();
     private mod_sucursal ms = new mod_sucursal();
-
+    private ob_sucursal obsuc = new ob_sucursal();
     public String getNsucsec() {
         return nsucsec;
     }
@@ -112,7 +112,7 @@ public class Sucursales_controlador implements Serializable {
             lis = ms.tods();
             return lis;
         } catch (Exception e) {
-            System.out.println("ERROR: " + e);
+            System.out.println("Error Al Traer las Sucursales: " + e);
             lis.clear();
             return lis;
         }
@@ -191,7 +191,10 @@ public class Sucursales_controlador implements Serializable {
     }
 
     public void guardar() {
-        System.out.println("SALIDA DE TODO: " + nsuci);
+        obsuc.setSuc_id(0);
+        obsuc.setSuc_nom(nnsuc);
+        obsuc.setSuc_tel(nsuctel);
+        ms.guardar(obsuc);
     }
 
 }

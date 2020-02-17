@@ -21,18 +21,16 @@ namespace capa_negocio
             foreach (DataRow dr in dt.Rows)
             {
                 ob_sucursal sucursal = new ob_sucursal();
-                sucursal.suc_id = Convert.ToInt32(dr["ID Sucursal"].ToString());
-                sucursal.cin_id = Convert.ToInt32(dr["ID Cine"].ToString());
+                sucursal.suc_id = Convert.ToInt32(dr["suc_id"].ToString());
+                sucursal.cin_id = Convert.ToInt32(dr["cin_id"].ToString());
                 sucursal.suc_nom = dr["suc_nom"].ToString();
-                sucursal.suc_sec = dr["suc_sec"].ToString();
+                sucursal.sec_id = Convert.ToInt32(dr["sec_id"].ToString());
                 sucursal.suc_ruc = dr["suc_ruc"].ToString();
                 sucursal.suc_dir = dr["suc_dir"].ToString();
-                sucursal.suc_id = Convert.ToInt32(dr["suc_tel"].ToString());
+                sucursal.suc_tel = dr["suc_tel"].ToString();
                 sucursal.suc_cor = dr["suc_cor"].ToString();
-                sucursal.suc_ciu = dr["suc_ciu"].ToString();
-
-                listasuc.Add(sucursal);
-                listasuc.Add(sucursal);
+                sucursal.ciu_id = Convert.ToInt32(dr["ciu_id"].ToString());
+                sucursal.suc_esta = dr["suc_esta"].ToString();
                 listasuc.Add(sucursal);
             }
             return listasuc;
@@ -53,25 +51,32 @@ namespace capa_negocio
                 sinna.suc_id = 0;
                 sinna.cin_id = 0;
                 sinna.suc_nom = null;
-                sinna.suc_sec = null;
-                sinna.suc_ruc= null;
+                sinna.sec_id = 0;
+                sinna.suc_ruc = null;
                 sinna.suc_dir = null;
-                sinna.suc_tel = 0;
+                sinna.suc_tel = null;
                 sinna.suc_cor = null;
-                sinna.suc_ciu = null;
-                
+                sinna.ciu_id = 0;
+
 
                 return sinna;
             }
         }
-        public void nuevo_sucursal(int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_ciu)
+        public bool nuevo_sucursal(int cin_id, int ciu_id, int sec_id, string suc_nom, string suc_ruc, string suc_dir, string suc_tel, string suc_cor)
         {
-            cdsuc.nuevo_sucursal(cin_id, suc_nom, suc_sec, suc_ruc, suc_dir, suc_tel, suc_cor, suc_ciu);
+            if (cdsuc.nuevo_sucursal(cin_id, ciu_id, sec_id, suc_nom, suc_ruc, suc_dir, suc_tel, suc_cor))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void actualizar_sucursal(int id, int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_ciu)
+        public void actualizar_sucursal(int id, int ciu_id, int sec_id, int cin_id, string suc_nom, string suc_sec, string suc_ruc, string suc_dir, int suc_tel, string suc_cor, string suc_esta)
         {
-            cdsuc.actualizar_sucursal( id, cin_id, suc_nom, suc_sec, suc_ruc, suc_dir, suc_tel, suc_cor, suc_ciu);
+            cdsuc.actualizar_sucursal(id, ciu_id, sec_id, cin_id, suc_nom, suc_sec, suc_ruc, suc_dir, suc_tel, suc_cor, suc_esta);
         }
 
         public void eliminar_sucursal(int id)
