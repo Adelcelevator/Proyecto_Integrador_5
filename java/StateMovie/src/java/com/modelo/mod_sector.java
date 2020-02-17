@@ -21,24 +21,25 @@ import org.json.JSONObject;
  * @author Panchito
  */
 public class mod_sector {
+
     private ob_sector obsec = new ob_sector();
     private Variables var = new Variables();
-    private String dire = "http://"+var.getIp()+var.getPuertp()+"/api/Sector";
+    private String dire = "http://" + var.getIp() + var.getPuertp() + "/api/Sector";
     private List<ob_sector> lista = new ArrayList<>();
-    
-    public List<ob_sector> todosS(){
+
+    public List<ob_sector> todosS() {
         lista.clear();
-        try{
+        try {
             URL url = new URL(dire);
             HttpURLConnection cone = (HttpURLConnection) url.openConnection();
             cone.setRequestMethod("GET");
             cone.setRequestProperty("ACCEPT", "application/json");
             BufferedReader br = new BufferedReader(new InputStreamReader(cone.getInputStream()));
             String sal;
-            while((sal=br.readLine())!= null){
+            while ((sal = br.readLine()) != null) {
                 JSONArray arj = new JSONArray(sal);
                 JSONObject obj;
-                for(int i =0; i<arj.length();i++){
+                for (int i = 0; i < arj.length(); i++) {
                     obj = arj.getJSONObject(i);
                     obsec.setSec_id(obj.getInt("sec_id"));
                     obsec.setCiu_id(obj.getInt("ciu_id"));
@@ -47,10 +48,36 @@ public class mod_sector {
                     lista.add(obsec);
                 }
             }
+            cone.disconnect();
             return lista;
-        }catch(Exception e){
-            System.out.println("ERROR AL TRAER SECTORES: "+e);
+        } catch (Exception e) {
+            System.out.println("ERROR AL TRAER SECTORES: " + e);
         }
         return lista;
+    }
+
+    public ob_sector secto(String nombre) {
+        try {
+            dire = dire + "?secto_nom" + nombre;
+            URL url = new URL(dire);
+            HttpURLConnection cone = (HttpURLConnection) url.openConnection();
+            cone.setRequestMethod("GET");
+            cone.setRequestProperty("ACCEPT", "application/json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(cone.getInputStream()));
+            String out = br.readLine();
+            if (out != null) {
+                JSONObject jsn = new JSONObject(out);
+                obsec.setCiu_id(jsn.getInt("ciu_id"));
+                obsec.setSec_id(jsn.getInt("sec_id"));
+                obsec.setSec_nom(jsn.getString("sec_nom"));
+                obsec.setSec_est(jsn.getString("sec_est"));
+                return obsec;
+            } else {
+                return obsec;
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR AL TRAER EL SECTOR: "+e);
+        }
+        return obsec;
     }
 }

@@ -58,4 +58,28 @@ public class mod_ciudad implements Serializable {
         }
         return lista;
     }
+    
+    public ob_ciudad secto(String nombre) {
+        try {
+            direc = direc + "?ciu_nom" + nombre;
+            URL url = new URL(direc);
+            HttpURLConnection cone = (HttpURLConnection) url.openConnection();
+            cone.setRequestMethod("GET");
+            cone.setRequestProperty("ACCEPT", "application/json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(cone.getInputStream()));
+            String out = br.readLine();
+            if (out != null) {
+                JSONObject jsn = new JSONObject(out);
+                obciu.setCiu_id(jsn.getInt("ciu_id"));
+                obciu.setCiu_nom(jsn.getString("ciu_nom"));
+                obciu.setCiu_est(jsn.getString("ciu_est"));
+                return obciu;
+            } else {
+                return obciu;
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR AL TRAER LA CIUDAD: "+e);
+        }
+        return obciu;
+    }
 }

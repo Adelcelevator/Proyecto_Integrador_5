@@ -25,9 +25,9 @@ namespace core_1.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult ciudad(string nomciu)
+        public IHttpActionResult ciudad(string ciu_nom)
         {
-            obci = cnci.una(nomciu);
+            obci = cnci.una(ciu_nom);
             return Ok(obci);
         }
     }
