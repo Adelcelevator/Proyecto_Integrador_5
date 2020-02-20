@@ -31,50 +31,18 @@ namespace capa_datos
             return tabla1;
         }
 
-        /*public ob_cliente buscar_cine(string cine)
+        public DataTable buscar_cine(string cine)
         {
             DataTable tabla = new DataTable();
             comando.Connection = conexion.abrir_conexion();
-            comando.CommandText = "mostrar_cine";
+            comando.CommandText = "mostrar_cine_x_cine";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@cliente", clie);
+            comando.Parameters.AddWithValue("@cine", cine);
             leer = comando.ExecuteReader();
             tabla.Load(leer);
-            try
-            {
-                if (tabla.Rows[0] != null)
-                {
-                    DataRow clien = tabla.Rows[0];
-                    obcli.cli_id = Convert.ToInt32(clien["ID Cliente"].ToString());
-                    obcli.cli_ruc = clien["RUC"].ToString();
-                    obcli.cli_nom = clien["Nombre"].ToString();
-                    comando.Parameters.Clear();
-                    conexion.cerrar_conexion();
-                    return obcli;
-                }
-                return obcli;
-            }
-            catch (Exception)
-            {
-                obcli.cli_ruc = null;
-                return obcli;
-            }
-
-        }
-        */
-        public ob_cine mostrar_todo_cine(string cine)
-        {
-            DataTable tabla = new DataTable();
-            comando.Connection = conexion.abrir_conexion();
-            comando.CommandText = "mostrar_cine";
-            comando.CommandType = CommandType.StoredProcedure;
-            leer = comando.ExecuteReader();
-            tabla.Load(leer);
-            DataRow cin = tabla.Rows[0];
-            obci.cin_id = Convert.ToInt32(cin["ID Cine"].ToString());
-            obci.cin_nom = cin["Nombre"].ToString();
             conexion.cerrar_conexion();
-            return obci;
+            return tabla;
+
         }
 
         public void eliminar_cine(int id)

@@ -58,7 +58,7 @@ public class mod_sector {
 
     public ob_sector secto(String nombre) {
         try {
-            dire = dire + "?secto_nom" + nombre;
+            dire = dire + "?secto_nom=" + nombre;
             URL url = new URL(dire);
             HttpURLConnection cone = (HttpURLConnection) url.openConnection();
             cone.setRequestMethod("GET");

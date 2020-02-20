@@ -87,4 +87,28 @@ public class mod_cine {
             return false;
         }
     }
+    
+    public ob_cine cinebus(String nombre) {
+        try {
+            werl = werl + "?nombre=" + nombre.replace(" ", "%20");
+            URL url = new URL(werl);
+            HttpURLConnection cone = (HttpURLConnection) url.openConnection();
+            cone.setRequestMethod("GET");
+            cone.setRequestProperty("ACCEPT", "application/json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(cone.getInputStream()));
+            String out = br.readLine();
+            if (out != null) {
+                JSONObject jsn = new JSONObject(out);
+                cin.setCin_id(jsn.getInt("cin_id"));
+                cin.setCin_nom(jsn.getString("cin_nom"));
+                cin.setCin_est(jsn.getString("cin_est"));
+                return cin;
+            } else {
+                return cin;
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR AL TRAER EL CINE: "+e);
+        }
+        return cin;
+    }
 }

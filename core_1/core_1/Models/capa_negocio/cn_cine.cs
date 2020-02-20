@@ -14,6 +14,7 @@ namespace capa_negocio
     {
         private cd_cine cdcin = new cd_cine();
         private List<ob_cine> listausu = new List<ob_cine>();
+        private ob_cine cine = new ob_cine();
 
         public List<ob_cine> Todos_cines()
         {
@@ -29,28 +30,24 @@ namespace capa_negocio
             }
             return listausu;
         }
-       /* public ob_cine buscar_cine(string nom)
+       
+        public ob_cine buscado(string nom)
         {
-
-            ob_cine us = new ob_cine();
-            cd_cine cda = new cd_cine();
-            us = cda.buscar_cine(nom);
-            if (us.usu_usu != null)
+            DataTable tas = cdcin.buscar_cine(nom);
+            if (tas.Rows.Count != 0)
             {
-                return us;
+                DataRow dr = tas.Rows[0];
+                cine.cin_id = Convert.ToInt32(dr["cin_id"].ToString());
+                cine.cin_nom = dr["cin_nom"].ToString();
+                cine.cin_est = dr["cin_est"].ToString();
+                return cine;
             }
             else
             {
-                ob_usuario sinna = new ob_usuario();
-                sinna.cli_id = 0;
-                sinna.usu_id = 0;
-                sinna.tus_id = 0;
-                sinna.usu_pass = null;
-                sinna.usu_pass = null;
-                return sinna;
+                return cine;
             }
         }
-        */
+
         public bool nuevo(string nom)
         {
             if(cdcin.nuevo_cine(nom).Equals(true))

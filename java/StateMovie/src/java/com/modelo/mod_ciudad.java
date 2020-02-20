@@ -59,9 +59,9 @@ public class mod_ciudad implements Serializable {
         return lista;
     }
     
-    public ob_ciudad secto(String nombre) {
+    public ob_ciudad ciuda(String nombre) {
         try {
-            direc = direc + "?ciu_nom" + nombre;
+            direc = direc + "?ciu_nom=" + nombre;
             URL url = new URL(direc);
             HttpURLConnection cone = (HttpURLConnection) url.openConnection();
             cone.setRequestMethod("GET");

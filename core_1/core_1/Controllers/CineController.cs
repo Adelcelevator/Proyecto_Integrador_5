@@ -22,6 +22,13 @@ namespace core_1.Controllers
             return liscin;
         }
 
+
+        [HttpGet]
+        public IHttpActionResult cin(string nombre)
+        {
+            obs = cn_cin.buscado(nombre);
+            return Ok(obs);
+        }
         //insertar
         [HttpPost]
         public IHttpActionResult Post(string nom)

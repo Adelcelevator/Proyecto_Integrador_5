@@ -16,8 +16,10 @@ import com.objetos.ob_sucursal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -26,11 +28,18 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "sucursal")
 @SessionScoped
 public class Sucursales_controlador implements Serializable {
-
-    private String nsuci, nnsuc, nrucsuc, ntelsuc, ncorr, nsucdir, nsuctel, nsucci,nsucsec;
+    private FacesContext conte;
+    private String nsuci, nnsuc, nrucsuc, ntelsuc, ncorr, nsucdir, nsuctel, nsucciu, nsucsec;
     private List<ob_sucursal> lis = new ArrayList<>();
     private mod_sucursal ms = new mod_sucursal();
     private ob_sucursal obsuc = new ob_sucursal();
+    private mod_sector secto = new mod_sector();
+    private mod_ciudad ciu = new mod_ciudad();
+    private ob_sector sec = new ob_sector();
+    private ob_ciudad ciud = new ob_ciudad();
+    private mod_cine mci = new mod_cine();
+    private ob_cine nomci = new ob_cine();
+
     public String getNsucsec() {
         return nsucsec;
     }
@@ -38,7 +47,7 @@ public class Sucursales_controlador implements Serializable {
     public void setNsucsec(String nsucsec) {
         this.nsucsec = nsucsec;
     }
-    
+
     public String getNsuctel() {
         return nsuctel;
     }
@@ -95,12 +104,12 @@ public class Sucursales_controlador implements Serializable {
         this.ncorr = ncorr;
     }
 
-    public String getNsucci() {
-        return nsucci;
+    public String getNsucciu() {
+        return nsucciu;
     }
 
-    public void setNsucci(String nsucci) {
-        this.nsucci = nsucci;
+    public void setNsucciu(String nsucci) {
+        this.nsucciu = nsucci;
     }
 
     public Sucursales_controlador() {
@@ -122,14 +131,13 @@ public class Sucursales_controlador implements Serializable {
         List<String> nomC = new ArrayList<>();
         try {
             nomC.clear();
-            mod_cine mci = new mod_cine();
+
             List<ob_cine> liscin;
             liscin = mci.todosc();
             nomC.add("Escoja Una");
             for (int i = 0; i < liscin.size(); i++) {
-                ob_cine nom;
-                nom = liscin.get(i);
-                String nomb = nom.getCin_nom();
+                nomci = liscin.get(i);
+                String nomb = nomci.getCin_nom();
                 nomC.add(nomb);
             }
             return nomC;
@@ -144,14 +152,10 @@ public class Sucursales_controlador implements Serializable {
         List<String> lisc = new ArrayList<>();
         lisc.clear();
         try {
-
             lisc.clear();
-            mod_ciudad ciu = new mod_ciudad();
             List<ob_ciudad> lisci;
             lisci = ciu.todas();
             lisc.add("Escoja Una");
-            ob_ciudad ciud;
-
             for (int i = 0; i < lisci.size(); i++) {
                 ciud = lisci.get(i);
                 String nomc = ciud.getCiu_nom();
@@ -171,12 +175,9 @@ public class Sucursales_controlador implements Serializable {
         try {
 
             lisc.clear();
-            mod_sector secto = new mod_sector();
             List<ob_sector> lisec;
             lisec = secto.todosS();
             lisc.add("Escoja Una");
-            ob_sector sec;
-
             for (int i = 0; i < lisec.size(); i++) {
                 sec = lisec.get(i);
                 String nomc = sec.getSec_nom();
@@ -194,7 +195,27 @@ public class Sucursales_controlador implements Serializable {
         obsuc.setSuc_id(0);
         obsuc.setSuc_nom(nnsuc);
         obsuc.setSuc_tel(nsuctel);
-        ms.guardar(obsuc);
+        ciud = ciu.ciuda(nsucciu.replace(" ", "%20"));
+        obsuc.setCiu_id(ciud.getCiu_id());
+        sec = secto.secto(nsucsec.replace(" ", "%20"));
+        obsuc.setSec_id(sec.getSec_id());
+        nomci = mci.cinebus(nsuci.replace(" ", "%20"));
+        obsuc.setCin_id(nomci.getCin_id());
+        obsuc.setSuc_ruc(nrucsuc);
+        obsuc.setSuc_dir(nsucdir);
+        obsuc.setSuc_esta("NUEVA");
+        obsuc.setSuc_cor(ncorr);
+        if(ms.guardar(obsuc)){
+            try{
+            conte = FacesContext.getCurrentInstance();
+           conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO", "Sucursal Registrada Correctamente"));
+            }catch(Exception e){
+                System.out.println("ERROR AL PONER EL MENSAJE: "+e);
+            }
+        }else{
+            conte = FacesContext.getCurrentInstance();
+           conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO", "Error al Registrar"));
+        }
     }
 
 }

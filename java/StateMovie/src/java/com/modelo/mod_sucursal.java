@@ -24,7 +24,7 @@ import org.json.JSONObject;
 public class mod_sucursal implements Serializable{
 
     public List<ob_sucursal> liss = new ArrayList<ob_sucursal>();
-    public ob_sucursal sucs = new ob_sucursal();
+    public ob_sucursal sucs;
     private Variables vars = new Variables();
     String wsr = "http://" + vars.getIp() + vars.getPuertp() + "/api/Sucursal";
 
@@ -41,6 +41,7 @@ public class mod_sucursal implements Serializable{
                 while ((fue = bf.readLine()) != null) {
                     JSONArray arg = new JSONArray(fue);
                     for (int i = 0; i < arg.length(); i++) {
+                        sucs = new ob_sucursal();
                         JSONObject nuevo = arg.getJSONObject(i);
                         sucs.setSec_id(nuevo.getInt("sec_id"));
                         sucs.setCin_id(nuevo.getInt("cin_id"));
