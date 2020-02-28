@@ -8,44 +8,45 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Peliculas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <ui:composition template="templates/template_index.xhtml">
-            <ui:define name="info_dentro"> 
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+            <ui:define name="info_dentro">
                 <br/>
                 <br/>
                 <h:form>  
-                    <div class="table">
-                        <p:dataTable  id="tabla_emp" class="table"  var="pelicula" value="#{pelis.resulBus()}">
-                            <p:column id="col_ruc" class="bg-light">
-                                <table border="0">
-                                    <tr>
-                                        <td>
-                                            <img style="img-fluid" class="border-0" src="#{pelicula.pel_linkba}" width="450px" height="200px" alt="banner" />
-                                        </td>                            
-                                        <td>
-                                            <br/><br/>Director: <h:outputText class="border-0" value="#{pelicula.pel_dire}" />
-                                            <br/><br/>Productora: <h:outputText class="border-0" value="#{pelicula.pel_pro}" />
-                                        </td>
-                                    </tr>
-                                </table>
+                    <div>
+                        <p:dataTable style="background-color: rgba(255,255,255,0) !important;" id="tabla_emp" var="pelicula" value="#{pel.resulBus()}">
+                            <p:column id="col_baner" width="300" style="color:white; background-color: black;">
+                                <img src="#{pelicula.pel_linkba}" class="card-img-top" width="300" alt="Banner" height="300"/>
+                            </p:column>
+                            <p:column style="color:white; background-color: black;" id="col_direc">
+                                <h:outputLabel value="Director: "/>&#160;<h:outputLabel value="#{pelicula.pel_dire}"/><br/>
+                                <h:outputLabel value="Productora: "/>&#160;<h:outputLabel value="#{pelicula.pel_pro}"/><br/>
+                                <h:outputLabel value="Clasificación: "/>&#160;<h:outputLabel value="#{pelicula.pel_cla}"/><br/>
+                                <h:outputLabel value="Trailer: "/>&#160;<a href="#{pelicula.pel_linkv}">Aqui</a>
+
+                            </p:column>
+                            <p:column style="color:white; background-color: black;" id="col_hor">
+                                <h:commandButton id="btn_hor" class="btn btn-danger" onclick="PF('verHorarios').show()" action="#{pel.selec(pelicula)}" value="Ver Horarios">
+
+                                </h:commandButton>
                             </p:column>
                         </p:dataTable>
                     </div>
+                    <f:ajax event="click" render="pelH" listener="#{pel.valorH(evento)}"/>
+                    <p:dialog width="900" widgetVar="verHorarios" closable="false" closeOnEscape="true" resizable="false" modal="true">
+                        Horarios para la Pelicula: <p:outputLabel id="pelH" value="#{pel.valorH(evento)}"/> <br/>
+                        <h:selectOneMenu id="cinesec" value="#{pel.cinesec}"><f:selectItems value="#{pel.cinest()}"/><p:ajax update="lissuc"/></h:selectOneMenu>&#160;<h:selectOneMenu id="lissuc" value="#{pel.sucsec}"><p:ajax update="cinesec"/><f:selectItems value="#{pel.sucurs(evento)}"></f:selectItems></h:selectOneMenu>
+                    </p:dialog>
+                    <p:dataTable>
+                        
+                    </p:dataTable>
                 </h:form>
             </ui:define>
         </ui:composition>

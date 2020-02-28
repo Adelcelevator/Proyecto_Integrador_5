@@ -82,7 +82,5 @@ public class ob_pelicula implements Serializable{
     public void setPel_linkba(String pel_linkba) {
         this.pel_linkba = pel_linkba;
     }
-    
-    
 
 }

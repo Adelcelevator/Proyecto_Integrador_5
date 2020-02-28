@@ -35,6 +35,51 @@ namespace capa_negocio
             }
             return listasuc;
         }
+
+        public List<ob_sucursal> sucs_x_ci(int id_ci)
+        {
+            listasuc.Clear();
+            DataTable dt = cdsuc.buscarxcin(id_ci);
+            foreach (DataRow dr in dt.Rows)
+            {
+                ob_sucursal sucursal = new ob_sucursal();
+                sucursal.suc_id = Convert.ToInt32(dr["suc_id"].ToString());
+                sucursal.cin_id = Convert.ToInt32(dr["cin_id"].ToString());
+                sucursal.suc_nom = dr["suc_nom"].ToString();
+                sucursal.sec_id = Convert.ToInt32(dr["sec_id"].ToString());
+                sucursal.suc_ruc = dr["suc_ruc"].ToString();
+                sucursal.suc_dir = dr["suc_dir"].ToString();
+                sucursal.suc_tel = dr["suc_tel"].ToString();
+                sucursal.suc_cor = dr["suc_cor"].ToString();
+                sucursal.ciu_id = Convert.ToInt32(dr["ciu_id"].ToString());
+                sucursal.suc_esta = dr["suc_esta"].ToString();
+                listasuc.Add(sucursal);
+            }
+            return listasuc;
+        }
+
+        public ob_sucursal buscarxsuc(string nomb)
+        {
+            ob_sucursal suc =new ob_sucursal();
+            DataTable dsa = cdsuc.buscarxsuc(nomb);
+            if (dsa.Rows.Count != 0)
+            {
+                DataRow dr = dsa.Rows[0];
+                suc.suc_id = Convert.ToInt32(dr["suc_id"].ToString());
+                suc.cin_id = Convert.ToInt32(dr["cin_id"].ToString());
+                suc.suc_nom = dr["suc_nom"].ToString();
+                suc.sec_id = Convert.ToInt32(dr["sec_id"].ToString());
+                suc.suc_ruc = dr["suc_ruc"].ToString();
+                suc.suc_dir = dr["suc_dir"].ToString();
+                suc.suc_tel = dr["suc_tel"].ToString();
+                suc.suc_cor = dr["suc_cor"].ToString();
+                suc.ciu_id = Convert.ToInt32(dr["ciu_id"].ToString());
+                suc.suc_esta = dr["suc_esta"].ToString();
+                return suc;
+            }
+            return suc;
+        }
+
         public ob_sucursal buscarxsucursal(string sucu)
         {
 

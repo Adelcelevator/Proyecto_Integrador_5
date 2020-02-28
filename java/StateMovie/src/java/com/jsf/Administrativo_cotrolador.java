@@ -72,7 +72,7 @@ public class Administrativo_cotrolador implements Serializable {
     }
 
     public void nuevaCasa() {
-        if (mci.nuev(nueva) == true) {
+        if (mci.nuev(nueva.replace(" ", "%20")) == true) {
             conte = FacesContext.getCurrentInstance();
             conte.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO", "La casa de cine " + nueva + " a sido registrada con exito"));
         } else {

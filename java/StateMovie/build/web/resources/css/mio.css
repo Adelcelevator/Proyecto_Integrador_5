@@ -10,11 +10,21 @@ and open the template in the editor.
 
 
 .link{
- text-decoration: none;   
+    text-decoration: none;   
 }
 
 
 .mensajesmios{
     color: black !important;
     background-color: #dc3545 !important;
+}
+
+.tabla{
+    background-color: rgba(255,255,255,0) !important;
+}
+
+
+.cbx{
+    border-color: skyblue;
+    font-family: sans-serif;
 }

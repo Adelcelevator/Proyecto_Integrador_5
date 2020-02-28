@@ -67,6 +67,32 @@ namespace capa_datos
 
         }
 
+        public DataTable buscarxcin(int sucu)
+        {
+            DataTable tabla = new DataTable();
+            comando.Connection = conexion.abrir_conexion();
+            comando.CommandText = "mostrar_sucs_x_cine";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@cin_id", sucu);
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.cerrar_conexion();
+            return tabla;
+        }
+
+        public DataTable buscarxsuc(string suc_nom)
+        {
+            DataTable tabla = new DataTable();
+            comando.Connection = conexion.abrir_conexion();
+            comando.CommandText = "mostrar_suc_x_suc";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@nom_suc", suc_nom);
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.cerrar_conexion();
+            return tabla;
+        }
+
         public ob_sucursal mostrar_todo_sucursal(string sucu)
         {
             DataTable tabla = new DataTable();
@@ -86,7 +112,6 @@ namespace capa_datos
             obsuc.suc_tel = suc["suc_tel"].ToString();
             obsuc.suc_cor = suc["suc_cor"].ToString();
             obsuc.ciu_id = Convert.ToInt32(suc["suc_ciu"].ToString());
-
             conexion.cerrar_conexion();
             return obsuc;
         }

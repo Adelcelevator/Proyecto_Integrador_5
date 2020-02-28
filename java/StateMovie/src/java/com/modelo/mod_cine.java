@@ -91,6 +91,7 @@ public class mod_cine {
     public ob_cine cinebus(String nombre) {
         try {
             werl = werl + "?nombre=" + nombre.replace(" ", "%20");
+            System.out.println(""+werl);
             URL url = new URL(werl);
             HttpURLConnection cone = (HttpURLConnection) url.openConnection();
             cone.setRequestMethod("GET");
@@ -102,13 +103,17 @@ public class mod_cine {
                 cin.setCin_id(jsn.getInt("cin_id"));
                 cin.setCin_nom(jsn.getString("cin_nom"));
                 cin.setCin_est(jsn.getString("cin_est"));
+                werl = "http://" + vari.getIp() + vari.getPuertp() + "/api/Cine";
                 return cin;
             } else {
+                werl = "http://" + vari.getIp() + vari.getPuertp() + "/api/Cine";
                 return cin;
             }
         } catch (Exception e) {
-            System.out.println("ERROR AL TRAER EL CINE: "+e);
+            System.out.println("ERROR AL TRAER EL CINE BUSCADO: "+e);
+            werl = "http://" + vari.getIp() + vari.getPuertp() + "/api/Cine";
         }
+        werl = "http://" + vari.getIp() + vari.getPuertp() + "/api/Cine";
         return cin;
     }
 }

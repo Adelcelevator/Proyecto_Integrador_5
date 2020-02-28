@@ -14,31 +14,24 @@ import com.state.movie.statemovie.objetos.usuario;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public class mod_usuario {
     usuario usu = new usuario();
-    public usuario consulta(Context contexto,String valora){
 
+    public String consulta(Context contexto, String valora) {
+        final HashMap<String, Object> mapa = new HashMap<>();
         Variables vars = new Variables();
-        final String url = "http://" + vars.getIp() + ":" + vars.getPuerto() + "/api/Usuario?usu_id=" +valora;
+        String respuesta;
+        final String url = "http://" + vars.getIp() + vars.getPuerto() + "/api/Usuario?usu_id=" + valora;
+        Log.i("INFO", "CADENA DE CONEXION: " + url);
         RequestQueue res = Volley.newRequestQueue(contexto);
         StringRequest resq = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONObject json = new JSONObject((response.replace("]", "")).replace("[", ""));
-                            if (json.getInt("usu_id") != 0) {
-                                usu.setUsu_id(json.getInt("usu_id"));
-                                usu.setCli_id(json.getInt("cli_id"));
-                                usu.setTus_id(json.getInt("tus_id"));
-                                usu.setUsu_usu(json.getString("usu_usu"));
-                                usu.setUsu_pass(json.getString("usu_pass"));
-                            } else {
-                                Log.i("INFO", "No Existe el Usuario");
-                            }
-                        } catch (Exception e) {
-                            Log.e("error", "Error: " + e);
-                        }
+                        Log.i("INFO", "ESTO ES LO QUE LLEGO: " + response);
+                        mapa.put("respuesta", response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -47,6 +40,8 @@ public class mod_usuario {
             }
         });
         res.add(resq);
-        return usu;
+        respuesta = (String) mapa.get("respuesta");
+        Log.i("INFO", "LO QUE SE VA RETORNAR: " + respuesta);
+        return respuesta;
     }
 }

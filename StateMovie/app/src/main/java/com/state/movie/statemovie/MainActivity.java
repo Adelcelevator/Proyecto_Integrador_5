@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                obus = musu.consulta(getBaseContext(),txt_usuario.getText().toString());
+                String respuesta = musu.consulta(getBaseContext(),txt_usuario.getText().toString());
+                Log.i("INFO","LLEGO ESTO: "+respuesta);
             }
         });
     }
